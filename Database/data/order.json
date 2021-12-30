@@ -1,0 +1,1 @@
+{"schema":{"fields":[{"name":"index","type":"string"},{"name":"order_id","type":"string"},{"name":"employee_id","type":"string"},{"name":"product_id","type":"string"},{"name":"order_date","type":"string"},{"name":"order_num","type":"string"}],"primaryKey":["index"],"pandas_version":"0.20.0"},"data":[]}

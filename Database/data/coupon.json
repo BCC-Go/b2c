@@ -1,0 +1,1 @@
+{"schema":{"fields":[{"name":"index","type":"string"},{"name":"coupon_id","type":"string"},{"name":"employee_id","type":"string"},{"name":"valid_time","type":"string"},{"name":"sale_percent","type":"string"},{"name":"condition","type":"string"}],"primaryKey":["index"],"pandas_version":"0.20.0"},"data":[]}

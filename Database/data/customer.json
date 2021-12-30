@@ -1,0 +1,1 @@
+{"schema":{"fields":[{"name":"index","type":"string"},{"name":"employee_id","type":"string"},{"name":"customer_id","type":"string"},{"name":"customer_pw","type":"string"},{"name":"consumption","type":"string"},{"name":"point","type":"string"}],"primaryKey":["index"],"pandas_version":"0.20.0"},"data":[]}
