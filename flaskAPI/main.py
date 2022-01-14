@@ -1,6 +1,9 @@
 from app import User, app, db
 from flask_restful import Api, Resource, reqparse
+from flasgger import Swagger
+
 api = Api(app)
+swagger = Swagger(app)
 
 class Test(Resource):
     def get(self, name1):
