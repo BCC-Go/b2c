@@ -36,7 +36,7 @@
 ### 3-3. BackendApi
 #### How to install python flask environment
 
-      # cd 'virtualenv_folder'
-      # source bin/activate/
-      # pip install -U setuptools
-      # pip install -r requirements.txt
+      $ cd 'virtualenv_folder'
+      $ source bin/activate/
+      $ pip install -U setuptools
+      $ pip install -r requirements.txt
