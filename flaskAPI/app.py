@@ -23,9 +23,9 @@ class User(db.Model): # 유저
     phone = db.Column(db.String(11), nullable=False)
     sex = db.Column(db.BINARY(1), nullable=False)
     birth = db.Column(db.String(8), nullable=False)
-    consumption = db.Column(db.Integer, nullable=False, server_default=0)
+    consumption = db.Column(db.Integer, nullable=False)
     address = db.Column(db.String(100), nullable=False)
-    type = db.Column(db.BINARY(1), nullable=False, server_default=0)
+    type = db.Column(db.BINARY(1), nullable=False)
 
     point = db.relationship('Point', backref='user', lazy=True)
     coupon_user = db.relationship('CouponUser', backref='user', lazy=True)
