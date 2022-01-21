@@ -1,7 +1,7 @@
 from email.policy import default
 from sqlite3 import Timestamp
 from unicodedata import category
-from flask import Flask
+from flask import Flask, make_response, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from config import path
 
@@ -17,7 +17,7 @@ class User(db.Model): # 유저
     __tablename__="user"
     id = db.Column(db.Integer, primary_key=True)
     rank_id = db.Column(db.BINARY(1), db.ForeignKey('rank.id'), nullable=False)
-    login_id = db.Column(db.String(15), nullable=False)
+    loginId = db.Column(db.String(15), nullable=False)
     password = db.Column(db.String(40), nullable=False)
     name = db.Column(db.String(15), nullable=False)
     phone = db.Column(db.String(11), nullable=False)
