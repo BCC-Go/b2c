@@ -1,6 +1,3 @@
-from email.policy import default
-from sqlite3 import Timestamp
-from unicodedata import category
 from flask import Flask, make_response, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from config import path
@@ -109,7 +106,11 @@ class Discount(db.Model): # 상품 할인 정보
     end_date = db.Column(db.String(35), nullable=False)
     rate = db.Column(db.Float, nullable=False)
 
-
+class Event(db.Model):
+    __tablename__="event"
+    event_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
+    image = db.Column(db.String(45), nullable=False)
+    expire = db.Column(db.String(35), nullable=False)
 
 # 유저 상품 관련 테이블
 class Like(db.Model): # 좋아요
