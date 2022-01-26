@@ -4,28 +4,11 @@ from flask_restful import Api, Resource, reqparse
 from flasgger import Swagger
 from datetime import timedelta, datetime
 from flask_cors import CORS
+from func_user import UserFunction, access_cookie
 
 CORS(app)
 api = Api(app)
 swagger = Swagger(app)
-
-# session 만료
-def expire(expires):
-    now = datetime.now()
-    diff = str(expires - now)
-    if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
-        return 0
-    return 1
-
-def access_cookie(session_id,expires):
-    # session_id = request.cookies.get('session_id')
-    # expires = request.cookies.get('Expires')
-    session = Session.query.filter_by(id=session_id).first()
-    if session.id & expire(expires):
-        return session.user_id # success
-    dbs.session.delete(session)
-    dbs.session.commit()
-    return 0 # fail
 
 class Login(Resource):
     def put(self):
@@ -48,23 +31,14 @@ class Login(Resource):
             200:
                 description: cookie in request header
         """
-        parser = reqparse.RequestParser()
-        parser.add_argument("loginId", type = str)
-        parser.add_argument("password", type = str)
-        args = parser.parse_args()
-        user = User.query.filter_by(loginId=args['loginId']).first()
-        if user.password == args['password']:
-            session = Session(user_id = user.id)
-            dbs.session.add(session)
-            dbs.session.commit()
-
-        expires_in = timedelta(hours=1)  # cookie 기간
-        expires = datetime.now() + expires_in
-        print(expires)
-        resp = make_response(jsonify({'session_id': str(session.id), 'expire': str(expires)}))
-
-        resp = make_response(jsonify({'status': 'success'}))
-        resp.set_cookie('session_id',str(session.id), expires=expires)
+        data = request.get_json()
+        
+        session = UserFunction.login(data['login_id'],data['password'])
+        if session == 0:
+            return "Not Found"
+        
+        resp = make_response(jsonify({'session_id': str(session.id)}))
+        resp.set_cookie('session_id',str(session.id))
         return resp
 
 class Logout(Resource):
@@ -83,7 +57,6 @@ class Logout(Resource):
         dbs.session.delete(Session.query.filter_by(id=session_id).first())
         dbs.session.commit()
         response = make_response('logout')
-        response.set_cookie('session_id', expires=0)
         return response
 
 class Regist(Resource):
@@ -127,10 +100,10 @@ class Regist(Resource):
                 description: 성공하면 로그인 페이지로 이동
         """
         data = request.get_json()
-        user = User(rank_id = 1, login_id = data['login_id'], password = data['password'], name = data['name'], phone = data['phone'], sex = int(data['sex']), birth = data['birth'], consumption = 0, address = data['address'], type = 0)
-        db.session.add(user)
-        db.session.commit()
-        return "",200
+        value = UserFunction.regist(login_id = data['login_id'], password = data['password'], name = data['name'], phone = data['phone'], sex = int(data['sex']), birth = data['birth'], address = data['address'])
+        if 1 == value:
+            return "",200
+        return value
 
 class EventBanner(Resource):
     def get(self):
@@ -164,11 +137,11 @@ class ProductRecommand(Resource):
                 description: 로그인 인증
         """
         session_id = request.cookies.get('session_id')
-        expires = request.cookies.get('Expires')
-        user_id = access_cookie(session_id,expires)
-        if not user_id:
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
+        
 
         return "success"
         # todo 이걸로 small category id 여러개 골라서 필터링 함수 잘 짜야할 듯
