@@ -1,6 +1,7 @@
 from flask import Flask, make_response, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from config import path
+from datetime import datetime
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = path
@@ -35,10 +36,12 @@ class User(db.Model): # 유저
     buylist = db.relationship('Buylist', backref='user', lazy=True)
     
 class UserRecommand(db.Model): # 유저 비슷한 상품
+    __tablename__="recommand"
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     category_mid_id = db.Column(db.Integer, db.ForeignKey('category_mid.id'), nullable=False)
 
 class UserTaste(db.Model): # 유저 취향 상품
+    __tablename__="taste"
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     category_mid_id = db.Column(db.Integer, db.ForeignKey('category_mid.id'), nullable=False)
 
@@ -111,6 +114,15 @@ class Event(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
     image = db.Column(db.String(45), nullable=False)
     expire = db.Column(db.String(35), nullable=False)
+
+    # session 만료
+    def expire(self):
+        now = datetime.now()
+        diff = str(self.expires - now)
+        if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
+            return 0
+        return 1
+
 
 # 유저 상품 관련 테이블
 class Like(db.Model): # 좋아요

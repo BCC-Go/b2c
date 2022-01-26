@@ -95,6 +95,10 @@ class Regist(Resource):
             name: address
             type: string
             requirement: true
+          - in: formData
+            name: taste
+            type: string
+            requirement: true
             responses:
             200:
                 description: 성공하면 로그인 페이지로 이동
@@ -141,17 +145,37 @@ class ProductRecommand(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        
+        recom = UserRecommand.query.filter_by(user_id=user.id).first()
+        return UserFunction.recommand(recom,12)
 
-        return "success"
-        # todo 이걸로 small category id 여러개 골라서 필터링 함수 잘 짜야할 듯
-        # user.user_recommand.category_mid_id 
+class ProductTaste(Resource):
+    def get(self):
+        """
+        메인페이지 추천상품
+        로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
+        ---
+        tags:
+          - ProductTaste
+        responses:
+            0:
+                description: 로그인 안한 상태 int형으로 0 리턴
+            200:
+                description: 로그인 인증
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        recom = UserRecommand.query.filter_by(user_id=user.id).first()
+        return UserFunction.recommand(recom,12)
 
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Regist, '/regist')
 api.add_resource(EventBanner, '/main/event')
 api.add_resource(ProductRecommand, '/main/recommand')
+api.add_resource(ProductTaste, '/main/taste')
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)
