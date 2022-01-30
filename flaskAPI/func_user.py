@@ -6,11 +6,12 @@ from random import randint, shuffle
 def access_cookie(session_id):
     # session_id = request.cookies.get('session_id')
     # expires = request.cookies.get('Expires')
+    print(session_id)
     session = Session.query.filter_by(id=session_id).first()
     if session.id & session.expire():
         return session.user_id # success
-    dbs.session.delete(session)
-    dbs.session.commit()
+    db.session.delete(session)
+    db.session.commit()
     return 0 # fail 재발급 해야함
 
 item_to_dict = lambda r: {c.name: str(getattr(r, c.name)) for c in r.__table__.columns}
@@ -27,11 +28,11 @@ class UserFunction():
     def login(login_id, password):
         user = User.query.filter_by(login_id=login_id).first()
         if user.password == password:
-            expires_in = timedelta(seconds=30)  # cookie 기간
+            expires_in = timedelta(minutes=2)  # cookie 기간
             expires = datetime.now() + expires_in
             session = Session(user_id = user.id, expires = expires)
-            dbs.session.add(session)
-            dbs.session.commit()
+            db.session.add(session)
+            db.session.commit()
             return session.id
         return 0
 

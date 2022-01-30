@@ -6,12 +6,12 @@ from datetime import timedelta, datetime
 from flask_cors import CORS
 from func_user import UserFunction, access_cookie
 
-CORS(app)
+CORS(app,supports_credentials=True)
 api = Api(app)
 swagger = Swagger(app)
-
+app.config['CORS_HEADERS'] = 'Content-Type'
 class Login(Resource):
-    def put(self):
+    def post(self):
         """
         login with id, password. return is login_cookie
         please send cookie on header all request
@@ -32,13 +32,13 @@ class Login(Resource):
                 description: cookie in request header
         """
         data = request.get_json()
-        
+        print(request.headers['Session'])
         session = UserFunction.login(data['login_id'],data['password'])
         if session == 0:
             return "Not Found"
         
-        resp = make_response(jsonify({'session_id': str(session.id)}))
-        resp.set_cookie('session_id',str(session.id))
+        resp = make_response(jsonify({'session_id': session}))
+        resp.set_cookie('session_id',str(session))
         return resp
 
 class Logout(Resource):
@@ -140,8 +140,8 @@ class ProductRecommand(Resource):
             200:
                 description: 로그인 인증
         """
-        session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()

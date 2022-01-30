@@ -10,12 +10,29 @@ app.config['JSON_AS_ASCII'] = False #utf-8
 
 db = SQLAlchemy(app)
 
+class Session(db.Model):
+    __tablename__="session"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    expires = db.Column(db.DateTime, nullable=False)
+
+    # session 만료
+    def expire(self):
+        now = datetime.now()
+        diff = str(self.expires - now)
+        if diff[4] == '-' or diff[0] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
+            return 0
+        return 1
+
+
+
+
 # 유저 관련 테이블
 class User(db.Model): # 유저
     __tablename__="user"
     id = db.Column(db.Integer, primary_key=True)
     rank_id = db.Column(db.BINARY(1), db.ForeignKey('rank.id'), nullable=False)
-    loginId = db.Column(db.String(15), nullable=False)
+    login_id = db.Column(db.String(15), nullable=False)
     password = db.Column(db.String(40), nullable=False)
     name = db.Column(db.String(15), nullable=False)
     phone = db.Column(db.String(11), nullable=False)
@@ -36,12 +53,12 @@ class User(db.Model): # 유저
     buylist = db.relationship('Buylist', backref='user', lazy=True)
     
 class UserRecommand(db.Model): # 유저 비슷한 상품
-    __tablename__="recommand"
+    __tablename__="user_recommand"
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     category_mid_id = db.Column(db.Integer, db.ForeignKey('category_mid.id'), nullable=False)
 
 class UserTaste(db.Model): # 유저 취향 상품
-    __tablename__="taste"
+    __tablename__="user_taste"
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     category_mid_id = db.Column(db.Integer, db.ForeignKey('category_mid.id'), nullable=False)
 
