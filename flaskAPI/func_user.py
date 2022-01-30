@@ -13,6 +13,15 @@ def access_cookie(session_id):
     dbs.session.commit()
     return 0 # fail 재발급 해야함
 
+item_to_dict = lambda r: {c.name: str(getattr(r, c.name)) for c in r.__table__.columns}
+def all_item(item, n):
+    result = []
+    for i in range(n):
+        result.append(item_to_dict(item[i]))
+
+    return result
+
+
 class UserFunction():
 
     def login(login_id, password):
@@ -41,44 +50,18 @@ class UserFunction():
 
     def find_small_category(category_mid_id):
         cate_list = CategorySmall.query.filter_by(category_mid_id = category_mid_id).all()
-        return [cate_list[randint(1,len(cate_list))].id, cate_list[randint(1,len(cate_list))].id]
+        return [cate_list[randint(1,len(cate_list)-1)].id, cate_list[randint(1,len(cate_list)-1)].id]
 
     def recommand(recom,num):
         reco = UserFunction.find_small_category(recom.category_mid_id)
-        items1 = shuffle(Product.query.filter_by(category_small_id = reco[0]).all())
-        items2 = shuffle(Product.query.filter_by(category_small_id = reco[1]).all())
-        result = []
-
-        if num == 0 : # 모든 item 리턴
-            range1 = len(items1)
-            range2 = len(items2)
-        else:
-            range1 = num/2
-            range2 = num-range1
-
-        for i in range(1,range1):
-            res = {}
-            res['id'] = items1[i].id
-            res['category_small_id'] = items1[i].category_small_id
-            res['name'] = items1[i].name
-            res['price'] = items1[i].price
-            res['image'] = items1[i].image
-            res['brand'] = items1[i].brand
-            res['avg_star'] = items1[i].avg_star
-            result.append(res)
-        
-        for i in range(1,range2):
-            res = {}
-            res['id'] = items2[i].id
-            res['category_small_id'] = items2[i].category_small_id
-            res['name'] = items2[i].name
-            res['price'] = items2[i].price
-            res['image'] = items2[i].image
-            res['brand'] = items2[i].brand
-            res['avg_star'] = items2[i].avg_star
-            result.append(res)
-        
-        return result
+        items1 = Product.query.filter_by(category_small_id = reco[0]).all()
+        items2 = Product.query.filter_by(category_small_id = reco[1]).all()
+        item = items1+items2
+        shuffle(item)
+        if num == 0 or num > len(item):
+            num = len(item)
+    
+        return all_item(item,num)
     
 
 class CategoryView():
