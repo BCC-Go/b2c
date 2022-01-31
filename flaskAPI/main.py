@@ -1,15 +1,16 @@
 from app import *
-from session import Session, dbs
 from flask_restful import Api, Resource, reqparse
 from flasgger import Swagger
 from datetime import timedelta, datetime
 from flask_cors import CORS
 from func_user import UserFunction, access_cookie
+from werkzeug import secure_filename
 
 CORS(app,supports_credentials=True)
 api = Api(app)
 swagger = Swagger(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
 class Login(Resource):
     def post(self):
         """
@@ -20,7 +21,7 @@ class Login(Resource):
           - Login
         parameters:
           - in: body
-            name: loginId
+            name: login_id
             type: string
             requirement: true
           - in: body
@@ -54,8 +55,8 @@ class Logout(Resource):
                 description: cookie is expired
         """
         session_id = request.cookies.get('session_id')
-        dbs.session.delete(Session.query.filter_by(id=session_id).first())
-        dbs.session.commit()
+        db.session.delete(Session.query.filter_by(id=session_id).first())
+        db.session.commit()
         response = make_response('logout')
         return response
 
@@ -100,7 +101,7 @@ class Regist(Resource):
             type: string
             requirement: true
             responses:
-            200:
+              200:
                 description: 성공하면 로그인 페이지로 이동
         """
         data = request.get_json()
@@ -133,13 +134,39 @@ class ProductRecommand(Resource):
         로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
         ---
         tags:
-          - ProductRecommand
+          - MainPage
         responses:
             0:
-                description: 로그인 안한 상태 int형으로 0 리턴
+                description: 비 로그인 시 0 리턴
             200:
                 description: 로그인 인증
+                schema:
+                    id: product view 
+                    properties:
+                        id:
+                            type: int
+                            description: product_id
+                        category_small_id:
+                            type: int
+                            description: 최하위 카테고리 id
+                        name:
+                            type: string
+                            description: 상품 이름
+                            price:
+                            type: int
+                            description: 상품 가격
+                        image:
+                            type: string
+                            description: 상품 이미지 url
+                        brand:
+                            type: string
+                            description: 상품 brand 이름
+                        avg_star:
+                            type: Folat
+                            description: 상품 평균 별점
+                        
         """
+
         session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
@@ -151,16 +178,16 @@ class ProductRecommand(Resource):
 class ProductTaste(Resource):
     def get(self):
         """
-        메인페이지 추천상품
+        메인페이지 취향상품
         로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
         ---
         tags:
-          - ProductTaste
+          - MainPage
         responses:
-            0:
-                description: 로그인 안한 상태 int형으로 0 리턴
             200:
                 description: 로그인 인증
+                schema:
+                    id: product view
         """
         session_id = request.cookies.get('session_id')
         user_id = access_cookie(session_id)
@@ -170,12 +197,20 @@ class ProductTaste(Resource):
         recom = UserRecommand.query.filter_by(user_id=user.id).first()
         return UserFunction.recommand(recom,12)
 
+class ImageUpload(Resource):
+  def post(self):
+    f = request.files['file']
+    f.save(secure_filename(f.filename))
+    return "success"
+
+    
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Regist, '/regist')
 api.add_resource(EventBanner, '/main/event')
 api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
+api.add_resource(ImageUpload, '/imgup')
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)
