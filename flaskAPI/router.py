@@ -2,8 +2,7 @@ from flask import make_response, jsonify, request
 from flask_restful import Api, Resource, reqparse
 from flasgger import Swagger
 from flask_cors import CORS
-from werkzeug.utils import secure_filename
-from model import app, db
+from model import app, db, User
 from function.func_user import UserFunction, access_cookie
 from function.func_img import Image
 
@@ -172,8 +171,7 @@ class ProductRecommand(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        recom = UserRecommand.query.filter_by(user_id=user.id).first()
-        return UserFunction.recommand(recom,12)
+        return UserFunction.recommand(user.id,12,'r')
 
 class ProductTaste(Resource):
     def get(self):
@@ -194,8 +192,65 @@ class ProductTaste(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        recom = UserRecommand.query.filter_by(user_id=user.id).first()
-        return UserFunction.recommand(recom,12)
+        return UserFunction.recommand(user.id,12,'t')
+
+class Mypage(Resource):
+    def get(self):
+        """
+        마이페이지
+        로그인 안할 시 이용 불가
+        ---
+        tags:
+          - Mypage
+        responses:
+            200:
+                schema:
+                    id: mypage
+                    properties:
+                        name: 
+                            type: string
+                        rank:
+                            type: string
+                            description: 유저 등급
+                        point:
+                            type: int
+                            description: 보유중인 포인트 총액 수
+                        coupon_num:
+                            type: int
+                            description: 보유중인 쿠폰 수
+        """
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.my_page(user)
+
+class CouponList(Resource):
+    def get(self):
+        """
+        보유한 쿠폰 리스트 반환
+        쿠폰 이름, 내용, 만료 날짜 반환
+        ---
+        tags:
+          - Mypage
+        responses:
+            200:
+                properties:
+                    name:
+                        type: string
+                    content:
+                        type: string
+                    expire:
+                        type: string
+        """
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.coupon_list(user.id)
+
 
 class ImageUpload(Resource):
     def post(self):
@@ -220,7 +275,7 @@ class ImageUpload(Resource):
         """
         f = request.files['file']
         data = request.get_json()
-        Image.upload(f,expire['expire'])
+        Image.upload(f,data['expire'])
 
         return "success"
 
@@ -231,6 +286,8 @@ api.add_resource(Regist, '/regist')
 api.add_resource(EventBanner, '/main/event')
 api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
+api.add_resource(Mypage, '/mypage')
+api.add_resource(CouponList, '/coupon')
 api.add_resource(ImageUpload, '/imgup')
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 from config.config_flask import timedelta
 from model import *
 from random import randint, shuffle
+
 def access_cookie(session_id):
     # session_id = request.cookies.get('session_id')
     # expires = request.cookies.get('Expires')
@@ -22,7 +23,6 @@ def all_item(item, n):
 
 
 class UserFunction():
-
     def login(login_id, password):
         user = User.query.filter_by(login_id=login_id).first()
         if user.password == password:
@@ -42,16 +42,15 @@ class UserFunction():
         db.session.commit()
         return 1
 
-    
-    def have_point(user_id):
-        point = Point.query.filter_by(user_id=user_id).all()
-        return sum(point.point)
-
     def find_small_category(category_mid_id):
         cate_list = CategorySmall.query.filter_by(category_mid_id = category_mid_id).all()
         return [cate_list[randint(1,len(cate_list)-1)].id, cate_list[randint(1,len(cate_list)-1)].id]
 
-    def recommand(recom,num):
+    def recommand(id,num,type):
+        if type == 'r':
+            recom = UserRecommand.query.filter_by(user_id=id).first()
+        else:
+            recom = UserRecommand.query.filter_by(user_id=id).first()
         reco = UserFunction.find_small_category(recom.category_mid_id)
         items1 = Product.query.filter_by(category_small_id = reco[0]).all()
         items2 = Product.query.filter_by(category_small_id = reco[1]).all()
@@ -62,28 +61,25 @@ class UserFunction():
     
         return all_item(item,num)
 
-    def show_detail_product(product_id):
-        product = Product.query.filter_by(id = product_id).first()
-        result = item_to_dict(product_id)
-        result['summary'] = product.product_detail.summary
-        result['detail'] = product.product_detail.detail
+    def my_page(user):
+        point = UserFunction.have_point(user.id)
+        coupon = CouponUser.query.filter_by(user_id = user.id).all()
+        coupon = len(coupon)
+        result = {}
+        result['name'] = user.name
+        result['rank'] = user.rank.grade
+        result['point'] = point
+        result['coupon_num'] = coupon
         return result
-    
 
-class CategoryView():
-    def show_category_all():
-        category = CategoryLarge.query.all()
-        return all_item(category,len(category))
-    
-    def show_category_mid(category_large_id):
-        category = CategoryMid.query.filter_by(category_large_id=category_large_id).all()
-        return all_item(category,len(category))
-    
-    def show_item(category_mid_id):
-        category = CategorySmall.query.filter_by(category_mid_id=category_mid_id).all()
-        product = Product.query.filter_by(category_mid_id=category_mid_id).all()
-        res=[]
-        for i in range(len(category)-1):
-            res.append(category[i].id)
+    def have_point(user_id):
+        point = []
+        point = Point.query.filter_by(user_id=user_id).all()
+        if len(point) == 0:
+            return 0
+        return sum(point.point)
 
+    def coupon_list(user):
+        coupon_list = CouponUser.query.join(CouponContent, user_id = user.id).all()
+        return all_item(coupon_list, len(coupon_list))
 

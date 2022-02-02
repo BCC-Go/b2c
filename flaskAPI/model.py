@@ -74,10 +74,18 @@ class Point(db.Model): # 포인트
 class CouponContent(db.Model): # 쿠폰 내용
     __tablename__="coupon_content"
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25), nullable=False)
     content = db.Column(db.String(100))
-    expire = db.Column(db.String(35), nullable=False) 
+    expire = db.Column(db.DataTime, nullable=False) 
 
     coupon_content = db.relationship('CouponUser', backref='coupon_content', lazy=True)
+
+    def expire(self):
+        now = koreaNow()
+        diff = str(self.expires - now)
+        if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
+            return 0
+        return 1
     
 class CouponUser(db.Model): # 유저가 가진 쿠폰
     __tablename__="coupon_user"
@@ -125,7 +133,6 @@ class Event(db.Model):
     image = db.Column(db.String(45), nullable=False)
     expire = db.Column(db.DateTime, nullable=False)
 
-    # session 만료
     def expire(self):
         now = koreaNow()
         diff = str(self.expires - now)
