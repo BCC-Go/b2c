@@ -1,12 +1,5 @@
-from flask import Flask, make_response, jsonify, request
+from config.config_flask import app, koreaNow
 from flask_sqlalchemy import SQLAlchemy
-from config import path
-from datetime import datetime
-
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = path
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JSON_AS_ASCII'] = False #utf-8
 
 db = SQLAlchemy(app)
 
@@ -18,7 +11,7 @@ class Session(db.Model):
 
     # session 만료
     def expire(self):
-        now = datetime.now()
+        now = koreaNow()
         diff = str(self.expires - now)
         if diff[4] == '-' or diff[0] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
             return 0
@@ -128,13 +121,13 @@ class Discount(db.Model): # 상품 할인 정보
 
 class Event(db.Model):
     __tablename__="event"
-    event_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(45), nullable=False)
-    expire = db.Column(db.String(35), nullable=False)
+    expire = db.Column(db.DateTime, nullable=False)
 
     # session 만료
     def expire(self):
-        now = datetime.now()
+        now = koreaNow()
         diff = str(self.expires - now)
         if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
             return 0

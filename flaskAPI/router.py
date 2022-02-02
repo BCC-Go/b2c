@@ -1,15 +1,15 @@
-from app import *
+from flask import make_response, jsonify, request
 from flask_restful import Api, Resource, reqparse
 from flasgger import Swagger
-from datetime import timedelta, datetime
 from flask_cors import CORS
-from func_user import UserFunction, access_cookie
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
+from model import app, db
+from function.func_user import UserFunction, access_cookie
+from function.func_img import Image
 
 CORS(app,supports_credentials=True)
 api = Api(app)
 swagger = Swagger(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 class Login(Resource):
     def post(self):
@@ -198,10 +198,31 @@ class ProductTaste(Resource):
         return UserFunction.recommand(recom,12)
 
 class ImageUpload(Resource):
-  def post(self):
-    f = request.files['file']
-    f.save(secure_filename(f.filename))
-    return "success"
+    def post(self):
+        """
+        이벤트 이미지 업로드
+        ---
+        tags:
+          - ImageUpload
+        parameters:
+          - in: fromData
+            name: file
+            type: file
+            requirement: true
+          - in: body
+            name: expire
+            type: string
+            description: 'Example : 2022-02-02 22:22:22'
+        responses:
+            200:
+                description: upload success
+
+        """
+        f = request.files['file']
+        data = request.get_json()
+        Image.upload(f,expire['expire'])
+
+        return "success"
 
     
 api.add_resource(Login, '/login')

@@ -1,7 +1,6 @@
-from datetime import datetime, timedelta
-from app import *
+from config.config_flask import timedelta
+from model import *
 from random import randint, shuffle
-
 def access_cookie(session_id):
     # session_id = request.cookies.get('session_id')
     # expires = request.cookies.get('Expires')
@@ -28,7 +27,7 @@ class UserFunction():
         user = User.query.filter_by(login_id=login_id).first()
         if user.password == password:
             expires_in = timedelta(minutes=2)  # cookie 기간
-            expires = datetime.now() + expires_in
+            expires = koreaNow() + expires_in
             session = Session(user_id = user.id, expires = expires)
             db.session.add(session)
             db.session.commit()
@@ -86,3 +85,5 @@ class CategoryView():
         res=[]
         for i in range(len(category)-1):
             res.append(category[i].id)
+
+
