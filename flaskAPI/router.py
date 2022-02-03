@@ -249,7 +249,7 @@ class CouponList(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return UserFunction.coupon_list(user.id)
+        return UserFunction.coupon_list(user)
 
 
 class ImageUpload(Resource):

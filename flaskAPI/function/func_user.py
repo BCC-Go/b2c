@@ -3,11 +3,8 @@ from model import *
 from random import randint, shuffle
 
 def access_cookie(session_id):
-    # session_id = request.cookies.get('session_id')
-    # expires = request.cookies.get('Expires')
-    print(session_id)
     session = Session.query.filter_by(id=session_id).first()
-    if session.id & session.expire():
+    if session.expire():
         return session.user_id # success
     db.session.delete(session)
     db.session.commit()
@@ -80,6 +77,10 @@ class UserFunction():
         return sum(point.point)
 
     def coupon_list(user):
-        coupon_list = CouponUser.query.join(CouponContent, user_id = user.id).all()
-        return all_item(coupon_list, len(coupon_list))
+        coupon_user = CouponUser.query.filter_by(user_id=user.id).all()
+        coupon_list=[]
+        for item in coupon_user:
+            coupon = CouponContent.query.filter_by(id=item.coupon_id).first()
+            coupon_list.append(item_to_dict(coupon))
+        return coupon_list
 

@@ -76,7 +76,7 @@ class CouponContent(db.Model): # 쿠폰 내용
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
     content = db.Column(db.String(100))
-    expire = db.Column(db.DataTime, nullable=False) 
+    expire = db.Column(db.DateTime, nullable=False) 
 
     coupon_content = db.relationship('CouponUser', backref='coupon_content', lazy=True)
 
@@ -89,8 +89,9 @@ class CouponContent(db.Model): # 쿠폰 내용
     
 class CouponUser(db.Model): # 유저가 가진 쿠폰
     __tablename__="coupon_user"
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    coupon_id = db.Column(db.Integer, db.ForeignKey('coupon_content.id'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    coupon_id = db.Column(db.Integer, db.ForeignKey('coupon_content.id'), nullable = False)
     
 
 
