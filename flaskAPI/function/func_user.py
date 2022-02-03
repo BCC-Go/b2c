@@ -84,3 +84,38 @@ class UserFunction():
             coupon_list.append(item_to_dict(coupon))
         return coupon_list
 
+
+    # 좋아요 관련
+    def list_like(user_id):
+        like = Like.query.filter_by(user_id = user_id).all()
+        result = []
+        for item in like:
+            product = Product.query.filter_by(id = item.product_id)
+            result.append(item_to_dict(product))
+        return result
+
+    def add_like(user_id,product_id):
+        like = Like(user_id = user_id, product_id = product_id)
+        db.session.add(like)
+        db.session.commit()
+
+    def delete_like(user_id,product_id):
+        like = Like.query.filter_by(user_id = user_id).filter_by(product_id = product_id)
+        db.session.delete(like)
+        db.session.commit()
+
+
+    # 장바구니 관련
+    def list_cart(user_id):
+        cart = Cart.query.filter_by(user_id = user_id).all()
+        return all_item(cart, len(cart))
+
+    def add_cart(user_id,product_id):
+        cart = Cart(user_id = user_id, product_id = product_id)
+        db.session.add(cart)
+        db.session.commit()
+
+    def delete_cart(user_id,product_id):
+        cart = Cart.query.filter_by(user_id = user_id).filter_by(product_id = product_id)
+        db.session.delete(cart)
+        db.session.commit()

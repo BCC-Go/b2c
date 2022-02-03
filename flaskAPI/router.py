@@ -279,7 +279,73 @@ class ImageUpload(Resource):
 
         return "success"
 
-    
+class Like(Resource):
+    def get(self):
+        """
+        좋아요 상품 리스트
+        ---
+        tags:
+          - Like
+        responses:
+            200:
+                description: 유저가 좋아요한 상품 리스트 보여주기
+                schema:
+                    id: product view  
+        """
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.list_like(user.id)
+
+    def post(self):
+        """
+        상품에 좋아요 하기
+        ---
+        tags:
+          - Like
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            requirement: true
+        responses:
+            200:
+                description: 상품 좋아요 성공
+        """
+        session_id = request.headers['Session']
+        data = request.get_json()
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.add_like(user.id,data['product_id'])
+
+    def delete(self):
+        """
+        상품에 좋아요 취소
+        ---
+        tags:
+          - Like
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            requirement: true
+        responses:
+            200:
+                description: 상품 좋아요 취소 성공
+        """
+        session_id = request.headers['Session']
+        data = request.get_json()
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.delete_like(user.id,data['product_id'])
+
+
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Regist, '/regist')
@@ -288,6 +354,7 @@ api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
 api.add_resource(Mypage, '/mypage')
 api.add_resource(CouponList, '/coupon')
+api.add_resource(Like, '/like')
 api.add_resource(ImageUpload, '/imgup')
 
 if __name__ == "__main__":
