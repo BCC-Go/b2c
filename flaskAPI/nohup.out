@@ -1,0 +1,1195 @@
+ * Serving Flask app 'config.config_flask' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://10.0.0.142:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+211.212.120.185 - - [07/Feb/2022 12:10:30] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:10:31] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:10:33] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:10:33] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+211.212.120.185 - - [07/Feb/2022 12:10:35] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 341, in delete
+    if 0 == user_id:
+NameError: name 'user_id' is not defined
+211.212.120.185 - - [07/Feb/2022 12:10:58] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:10:58] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:11:01] "OPTIONS /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:11:01] "GET /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:11:03] "OPTIONS /coupon HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:11:03] "GET /coupon HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:11:04] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:11:04] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+211.212.120.185 - - [07/Feb/2022 12:13:48] "OPTIONS /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:13:48] "GET /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:13:55] "OPTIONS /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:13:55] "[35m[1mGET /mypage HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 223, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+211.212.120.185 - - [07/Feb/2022 12:14:07] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:14:07] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:14:09] "OPTIONS /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:14:09] "GET /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:14:58] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:14:58] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 341, in delete
+    if 0 == user_id:
+NameError: name 'user_id' is not defined
+211.212.120.185 - - [07/Feb/2022 12:15:14] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:15:14] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+ * Detected change in '/home/ec2-user/b2c/flaskAPI/router.py', reloading
+
+session_id=42
+session_id=43
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+211.212.120.185 - - [07/Feb/2022 12:17:41] "OPTIONS /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:41] "GET /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:54] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:54] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:57] "OPTIONS /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:57] "GET /mypage HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:59] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:17:59] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+211.212.120.185 - - [07/Feb/2022 12:18:54] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:18:54] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 348, in delete
+    return UserFunction.delete_like(user.id,args['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 104, in delete_like
+    print(like.user_id)
+AttributeError: 'BaseQuery' object has no attribute 'user_id'
+211.212.120.185 - - [07/Feb/2022 12:21:58] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:21:58] "POST /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:22:06] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:22:06] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:22:07] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:22:07] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+ * Detected change in '/home/ec2-user/b2c/flaskAPI/function/func_user.py', reloading
+session_id=44
+session_id=45
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+211.212.120.185 - - [07/Feb/2022 12:23:26] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:23:26] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+211.212.120.185 - - [07/Feb/2022 12:23:36] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:23:36] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2637, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'BaseQuery' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 348, in delete
+    return UserFunction.delete_like(user.id,args['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 104, in delete_like
+    db.session.delete(like)
+  File "<string>", line 2, in delete
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2641, in delete
+    replace_context=err,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'flask_sqlalchemy.BaseQuery' is not mapped
+ * Detected change in '/home/ec2-user/b2c/flaskAPI/function/func_user.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+211.212.120.185 - - [07/Feb/2022 12:24:35] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:24:35] "DELETE /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:24:41] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:24:41] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:24:42] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:24:42] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2637, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'BaseQuery' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 348, in delete
+    return UserFunction.delete_like(user.id,args['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 105, in delete_like
+    db.session.delete(like)
+  File "<string>", line 2, in delete
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2641, in delete
+    replace_context=err,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'flask_sqlalchemy.BaseQuery' is not mapped
+211.212.120.185 - - [07/Feb/2022 12:25:09] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:25:09] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+ * Detected change in '/home/ec2-user/b2c/flaskAPI/function/func_user.py', reloading
+session_id=46
+test
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+211.212.120.185 - - [07/Feb/2022 12:30:56] "OPTIONS /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:30:57] "POST /login HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:30:58] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:30:58] "[35m[1mPOST /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 323, in post
+    return UserFunction.add_like(user.id,data['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 100, in add_like
+    db.session.commit()
+  File "<string>", line 2, in commit
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1431, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3363, in flush
+    self._flush(objects)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3503, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 3463, in _flush
+    flush_context.execute()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 633, in execute
+    uow,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 249, in save_obj
+    insert,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    statement, multiparams, execution_options=execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1614, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/sql/elements.py", line 326, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1491, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 2027, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 1803, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 490, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/mysql/connector/connection.py", line 395, in _handle_result
+    raise errors.get_exception(packet)
+sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry '1-3' for key 'PRIMARY'
+[SQL: INSERT INTO `like` (user_id, product_id) VALUES (%(user_id)s, %(product_id)s)]
+[parameters: {'user_id': 1, 'product_id': 3}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+211.212.120.185 - - [07/Feb/2022 12:31:08] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:31:08] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2637, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'BaseQuery' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 348, in delete
+    return UserFunction.delete_like(user.id,args['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 107, in delete_like
+    db.session.delete(like)
+  File "<string>", line 2, in delete
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2641, in delete
+    replace_context=err,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'flask_sqlalchemy.BaseQuery' is not mapped
+211.212.120.185 - - [07/Feb/2022 12:31:27] "OPTIONS /like HTTP/1.1" 200 -
+211.212.120.185 - - [07/Feb/2022 12:31:27] "[35m[1mDELETE /like HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2637, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'BaseQuery' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 348, in delete
+    return UserFunction.delete_like(user.id,args['product_id'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 107, in delete_like
+    db.session.delete(like)
+  File "<string>", line 2, in delete
+    
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 2641, in delete
+    replace_context=err,
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'flask_sqlalchemy.BaseQuery' is not mapped
+ * Detected change in '/home/ec2-user/b2c/flaskAPI/function/func_user.py', reloading
+session_id=47
+test
+test
+ * Restarting with stat
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 6, in <module>
+    from function.func_user import UserFunction, access_cookie
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 105
+    like = Like.query.filter(Like.user_id = user_id and Like.product_id = product_id)
+                                                                        ^
+SyntaxError: invalid syntax

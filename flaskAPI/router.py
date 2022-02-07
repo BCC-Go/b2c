@@ -163,7 +163,6 @@ class ProductRecommand(Resource):
                         avg_star:
                             type: Folat
                             description: 상품 평균 별점
-                        
         """
 
         session_id = request.headers['Session']
@@ -260,22 +259,16 @@ class ImageUpload(Resource):
         tags:
           - ImageUpload
         parameters:
-          - in: fromData
-            name: file
-            type: file
-            requirement: true
           - in: body
-            name: expire
+            name: url
             type: string
-            description: 'Example : 2022-02-02 22:22:22'
         responses:
             200:
                 description: upload success
 
         """
-        f = request.files['file']
         data = request.get_json()
-        Image.upload(f,data['expire'])
+        Image.upload(data['url'])
 
         return "success"
 
@@ -322,14 +315,14 @@ class Like(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.add_like(user.id,data['product_id'])
 
-    def delete(self):
+    def delete(self,pid):
         """
         상품에 좋아요 취소
         ---
         tags:
           - Like
         parameters:
-          - in: body
+          - in: path
             name: product_id
             type: int
             requirement: true
@@ -338,13 +331,11 @@ class Like(Resource):
                 description: 상품 좋아요 취소 성공
         """
         session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        parser = reqparse.RequestParser()
-        parser.add_argument("product_id", type = int)
-        args = parser.parse_args()
-        return UserFunction.delete_like(user.id,args['product_id'])
+        return UserFunction.delete_like(user.id,pid)
 
 
 api.add_resource(Login, '/login')
@@ -355,8 +346,8 @@ api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
 api.add_resource(Mypage, '/mypage')
 api.add_resource(CouponList, '/coupon')
-api.add_resource(Like, '/like')
-api.add_resource(ImageUpload, '/imgup')
+api.add_resource(Like, '/like/<int:pid>')
+api.add_resource(ImageUpload, '/event/imgup')
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)

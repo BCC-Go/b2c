@@ -99,9 +99,9 @@ class UserFunction():
         db.session.add(like)
         db.session.commit()
 
-    def delete_like(user_id,product_id):
-        like = Like.query.filter_by(user_id = user_id).filter_by(product_id = product_id)
-        print(like.user_id)
+    def delete_like(uid,pid):
+        like = Like.query.filter_by(user_id = uid , product_id = pid).first()
+        #print(like.user_id)
         db.session.delete(like)
         db.session.commit()
 
