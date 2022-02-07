@@ -101,6 +101,7 @@ class UserFunction():
 
     def delete_like(user_id,product_id):
         like = Like.query.filter_by(user_id = user_id).filter_by(product_id = product_id)
+        print(like.user_id)
         db.session.delete(like)
         db.session.commit()
 

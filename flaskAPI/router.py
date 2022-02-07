@@ -338,12 +338,13 @@ class Like(Resource):
                 description: 상품 좋아요 취소 성공
         """
         session_id = request.headers['Session']
-        data = request.get_json()
-        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return UserFunction.delete_like(user.id,data['product_id'])
+        parser = reqparse.RequestParser()
+        parser.add_argument("product_id", type = int)
+        args = parser.parse_args()
+        return UserFunction.delete_like(user.id,args['product_id'])
 
 
 api.add_resource(Login, '/login')
