@@ -393,6 +393,16 @@ class ItemRegist(Resource):
             type: string
             requirement: true
             description: brand 이름
+          - in: body
+            name: summary
+            type: string
+            requirement: true
+            description: 상품 요약 설명
+          - in: body
+            name: detail
+            type: string
+            requirement: true
+            description: 상품 상세 설명
         responses:
             200:
                 description: 상품 좋아요 성공
@@ -403,7 +413,7 @@ class ItemRegist(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], data['image'], data['brand'])
+        return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], data['image'], data['brand'], data['summary'], data['detail'])
 
 class ProductRecommand(Resource):
     def get(self):
@@ -498,8 +508,61 @@ class Search(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return ProductFunc.search_key(kw)
+        return Search.search_key(user.id,kw)
 
+class SearchCurrent(Resource):
+    def get(self,kw):
+        """
+        item 검색
+        검색어를 path에 싫어 보냄
+        ---
+        tags:
+          - Search
+        parameters:
+          - in: path
+            type: string
+            description: 검색어 문자열
+        responses:
+            200:
+                description: 로그인 인증
+                schema:
+                    id: keyword
+                    properties:
+                        keyword:
+                            type: string
+                            description: 키워드 리스트, 순서대로 사용하면 됩니다
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return Search.current_search(user.id)
+
+class SearchPopular(Resource):
+    def get(self,kw):
+        """
+        item 검색
+        검색어를 path에 싫어 보냄
+        ---
+        tags:
+          - Search
+        parameters:
+          - in: path
+            type: string
+            description: 검색어 문자열
+        responses:
+            200:
+                description: 로그인 인증
+                schema:
+                    id: keyword
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return Search.popular_search()
 
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
@@ -514,6 +577,10 @@ api.add_resource(ImageUpload, '/event/imgup')
 api.add_resource(ItemRegist, '/producer/item/regist')
 api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
+
+api.add_resource(Search, '/search/<string:keyword>')
+api.add_resource(SearchCurrent, '/search/current')
+api.add_resource(SearchPopular, '/search/popular')
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)

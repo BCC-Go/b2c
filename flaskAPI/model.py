@@ -1,3 +1,4 @@
+from ast import keyword
 from config.config_flask import app, koreaNow
 from flask_sqlalchemy import SQLAlchemy
 
@@ -16,7 +17,6 @@ class Session(db.Model):
         if diff[4] == '-' or diff[0] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
             return 0
         return 1
-
 
 
 
@@ -93,6 +93,23 @@ class CouponUser(db.Model): # 유저가 가진 쿠폰
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     coupon_id = db.Column(db.Integer, db.ForeignKey('coupon_content.id'), nullable = False)
     
+class SearchUser(db.Model):
+    __tablename__="search_user"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    keyword = db.Column(db.String(25), nullable=False)
+
+class SearchPopular(db.Model):
+    __tablename__="search_popular"
+    keyword = db.Column(db.String(25), primary_key=True)
+    count = db.Column(db.Integer, nullable=False)
+
+    def search(self):
+        self.count += 1
+    
+    def clean(self):
+        self.count = 0
+
 
 
 # 상품 관련 테이블
@@ -140,6 +157,7 @@ class Event(db.Model):
         if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
             return 0
         return 1
+
 
 
 # 유저 상품 관련 테이블

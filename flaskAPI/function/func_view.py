@@ -1,3 +1,4 @@
+from ast import keyword
 from model import *
 from function.func_user import item_to_dict, all_item
 from random import randint, shuffle
@@ -19,27 +20,25 @@ class CategoryView():
         category = CategoryMid.query.filter_by(category_large_id=category_large_id).all()
         return all_item(category,len(category))
     
-    def show_item(category_mid_id):
-        category = CategorySmall.query.filter_by(category_mid_id=category_mid_id).all()
-        product = Product.query.filter_by(category_mid_id=category_mid_id).all()
-        res=[]
-        for i in range(len(category)-1):
-            res.append(category[i].id)
+    # def show_item(category_mid_id):
+    #     category = CategorySmall.query.filter_by(category_mid_id=category_mid_id).all()
+    #     product = Product.query.filter_by(category_mid_id=category_mid_id).all()
+    #     res=[]
+    #     for i in range(len(category)-1):
+    #         res.append(category[i].id)
 
 class ProductFunc():
-    def regist_product(user, category_name, name, price, image, brand):
+    def regist_product(user, category_name, name, price, image, brand, summary, detail):
         if user.type != 1:
             return 0
         cate = CategorySmall.query.filter_by(name = category_name).first()
         new = Product(category_small_id = cate.id, name = name, price = price, image = image, brand = brand, avg_star = 0, regist_time = koreaNow())
         db.session.add(new)
         db.session.commit()
+        new_detail = ProductDetail(product_id = new.id, summary = summary, detail = detail)
+        db.session.add(new_detail)
+        db.session.commit()
         return '상품등록 성공', 200 
-
-    def search_key(kw):
-        search = '%%{}%%'.format(kw)
-        items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.name.ilike(search)).all()
-        return product_preview(items, len(items))
         
     def show_detail_product(product_id):
         items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.id == product_id).first()
@@ -55,7 +54,7 @@ class ProductFunc():
         if type == 'r':
             recom = UserRecommand.query.filter_by(user_id=id).first()
         else:
-            recom = UserRecommand.query.filter_by(user_id=id).first()
+            recom = UserTaste.query.filter_by(user_id=id).first()
         reco = ProductFunc.find_small_category(recom.category_mid_id)
         items1 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[0]).all()
         items2 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[1]).all()
@@ -66,3 +65,38 @@ class ProductFunc():
         if num == 0 or num > len(item):
             num = len(item)
         return product_preview(item,num)
+
+
+class Search():
+    def search_key(id,kw): # 유저 검색
+        Search.manage(id, kw)
+        search = '%%{}%%'.format(kw)
+        items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.name.ilike(search)).all()
+        return product_preview(items, len(items))
+
+    # 최근 검색어 10개 이하로 관리하기
+    def manage(id, kw):
+        search = SearchUser(user_id = id, keyword = kw)
+        sea = SearchUser.query.filter_by(user_id = id).all()
+        key = SearchPopular.query.filter_by(keyword = kw).first()
+        if key == []:
+            key = SearchPopular(keyword = kw, count = 1)
+            db.session.add(key)
+        else:
+            key.search()
+        if len(sea) == 10:
+            db.session.delete(sea[0])
+        db.session.add(search)
+        db.session.commit()
+
+    def current_search(id):
+        sea = db.session.query(SearchUser.keyword).filter_by(user_id = id).all()
+        sea.reverse()
+        return sea
+
+    def popular_search():
+        key = db.session.query(SearchPopular.keyword).order_by(SearchPopular.count.desc())
+        if len(key) >= 10:
+            return key[:10]
+        else:
+            return key
