@@ -83,9 +83,10 @@ class CouponContent(db.Model): # 쿠폰 내용
     def expire(self):
         now = koreaNow()
         diff = str(self.expires - now)
-        if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
+        if diff[4] == '-' or diff[0] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
             return 0
         return 1
+
     
 class CouponUser(db.Model): # 유저가 가진 쿠폰
     __tablename__="coupon_user"
@@ -145,6 +146,16 @@ class Discount(db.Model): # 상품 할인 정보
     end_date = db.Column(db.DateTime, nullable=False)
     rate = db.Column(db.Float, nullable=False)
 
+    def expire(self):
+        now = koreaNow()
+        diff = str(self.end_date - now)
+        if (diff[4] == '-' or diff[0] == '-'):
+            return 0 # 만료 이때 삭제
+        diffs = str(now - self.start_date)
+        if (diffs[4] == '-' or diffs[0] == '-'): # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
+            return -1 # 시작 전
+        return 1
+
 class Event(db.Model):
     __tablename__="event"
     id = db.Column(db.Integer, primary_key=True)
@@ -154,7 +165,7 @@ class Event(db.Model):
     def expire(self):
         now = koreaNow()
         diff = str(self.expires - now)
-        if diff[4] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
+        if diff[4] == '-' or diff[0] == '-': # 현재시간이 만료를 지났으면 diff = expires로 설정되어 2022- ~~로 나옴
             return 0
         return 1
 

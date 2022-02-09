@@ -1,4 +1,5 @@
 from ast import keyword
+from audioop import ratecv
 from model import *
 from function.func_user import item_to_dict, all_item
 from random import randint, shuffle
@@ -8,7 +9,7 @@ def product_preview(item, n):
     for i in range(n):
         res = item_to_dict(item[i][0])
         res.update(item_to_dict(item[i][1]))
-        result.append(res)
+        result.append(ProductFunc.discount(res,item[i][0].id))
     return result
 
 class CategoryView():
@@ -42,9 +43,7 @@ class ProductFunc():
         
     def show_detail_product(product_id):
         items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.id == product_id).first()
-        result = item_to_dict(items[0])
-        result.update(items[1])
-        return result
+        return product_preview(items, 1)
 
     def find_small_category(category_mid_id):
         cate_list = CategorySmall.query.filter_by(category_mid_id = category_mid_id).all()
@@ -53,9 +52,12 @@ class ProductFunc():
     def recommand(id,num,type):
         if type == 'r':
             recom = UserRecommand.query.filter_by(user_id=id).first()
-        else:
+            reco = ProductFunc.find_small_category(recom.category_mid_id)
+        elif type == 't':
             recom = UserTaste.query.filter_by(user_id=id).first()
-        reco = ProductFunc.find_small_category(recom.category_mid_id)
+            reco = ProductFunc.find_small_category(recom.category_mid_id)
+        else:
+            reco = ProductFunc.find_small_category(type)
         items1 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[0]).all()
         items2 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[1]).all()
         #items1 = Product.query.filter_by(category_small_id = reco[0]).all()
@@ -65,6 +67,28 @@ class ProductFunc():
         if num == 0 or num > len(item):
             num = len(item)
         return product_preview(item,num)
+
+    def discount(res, id):
+        discount = Discount.query.filter_by(product_id = id).first()
+        if discount == []:
+            return res
+        else:
+            if discount.expire() == 0:
+                db.session.delete(discount)
+                db.session.commit()
+            if discount.expire() == 1:
+                item = Product.query.filter_by(id = id).first()
+                if discount.rate < 100:
+                    amount = item.price * (100-discount.rate) / 100
+                    rate = str(discount.rate)+'%'
+                else:
+                    amount = item.price - discount.rate 
+                    rate = str(discount.rate)+'원'
+                res['rate'] = rate
+                res['amount'] = amount
+                return res
+            return res
+        
 
 
 class Search():

@@ -11,6 +11,7 @@ CORS(app,supports_credentials=True)
 api = Api(app)
 swagger = Swagger(app)
 
+# 유저 관련
 class Login(Resource):
     def post(self):
         """
@@ -211,6 +212,7 @@ class PointList(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.point_list(user)
 
+
 class ImageUpload(Resource):
     def post(self):
         """
@@ -232,6 +234,7 @@ class ImageUpload(Resource):
 
         return "success"
 
+# 상품 유저 관련
 class Like(Resource):
     def get(self):
         """
@@ -260,7 +263,7 @@ class Like(Resource):
           - Like
         parameters:
           - in: body
-            name: product_id
+            name: pid
             type: int
             requirement: true
         responses:
@@ -283,6 +286,7 @@ class Like(Resource):
           - Like
         parameters:
           - in: path
+            name: pid
             type: int
             requirement: true
         responses:
@@ -324,7 +328,7 @@ class Cart(Resource):
           - Cart
         parameters:
           - in: body
-            name: product_id
+            name: pid
             type: int
             requirement: true
         responses:
@@ -346,7 +350,8 @@ class Cart(Resource):
         tags:
           - Cart
         parameters:
-          - in: path
+          - in: body
+            name: pid
             type: int
             requirement: true
         responses:
@@ -360,10 +365,11 @@ class Cart(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.delete_cart(user.id,pid)
 
+# 상품 관련
 class ItemRegist(Resource):
     def post(self):
         """
-        상품에 좋아요 하기
+        상품 추가 하기
         ---
         tags:
           - Producer
@@ -455,6 +461,12 @@ class ProductRecommand(Resource):
                         summary:
                             type: string
                             description: 상품 요약 설명
+                        rate:
+                            type: string
+                            description: 비율이면 XX%, 금액이면 XX원 (할인하는 상품만 존재)
+                        amount:
+                            type: int
+                            description: 상품 최종 가격 (할인하는 상품만 존재)
         """
 
         session_id = request.headers['Session']
@@ -564,6 +576,114 @@ class SearchPopular(Resource):
         user = User.query.filter_by(id = user_id).first()
         return Search.popular_search()
 
+class ItemDetail(Resource):
+    def get(self,pid):
+        """
+        상품 눌렀을 때 상세 화면
+        ---
+        tags:
+          - Product Detail
+        parameters:
+          - in: body
+            name: pid
+            type: int
+            requirement: true
+        responses:
+            200:
+                description: 상품 상세 보기
+                schema:
+                    id: product view
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        return ProductFunc.show_detail_product(pid)
+
+class BigCateView(Resource):
+    def get(self):
+        """
+        최상위 카테고리 보기
+        ---
+        tags:
+          - CategoryView
+        responses:
+            200:
+                description: 카테고리 정보 리턴
+                schema:
+                    Properties:
+                        id:
+                            type: int
+                            description: 고유 번호, 클릭할 때 전송 용도
+                        name:
+                            type: string
+                            description: 카테고리 이름
+                        image:
+                            type: string
+                            description: 카테고리 이미지 url
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        return CategoryView.show_category_all()
+
+class MidCateView(Resource):
+    def get(self,cid):
+        """
+        중간 카테고리 보기
+        ---
+        tags:
+          - CategoryView
+        parameters:
+          - in: path
+            name: cid
+            type: string
+            description: 카테고리 라지 고유 번호
+        responses:
+            200:
+                description: 중간 카테고리 정보
+                schema:
+                    Properties:
+                        id:
+                            type: int
+                            description: 고유 번호, 클릭할 때 전송 용도
+                        name:
+                            type: string
+                            description: 카테고리 이름
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        return CategoryView.show_category_mid(cid)
+
+class ShowCateItem(Resource):
+    def get(self,cid):
+        """
+        중간 카테고리 상품 보기
+        ---
+        tags:
+          - CategoryView
+        parameters:
+          - in: path
+            name: cid
+            type: string
+            description: 카테고리 미드 고유 번호
+        responses:
+            200:
+                description: 중간 카테고리 관련 상품 보기
+                schema:
+                    id: product_view
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.recommand(user.id,0,cid)
+
+
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Regist, '/regist')
@@ -575,12 +695,18 @@ api.add_resource(Like, '/like/<int:pid>')
 api.add_resource(Cart, '/cart/<int:pid>')
 api.add_resource(ImageUpload, '/event/imgup')
 api.add_resource(ItemRegist, '/producer/item/regist')
+
 api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
 
 api.add_resource(Search, '/search/<string:keyword>')
 api.add_resource(SearchCurrent, '/search/current')
 api.add_resource(SearchPopular, '/search/popular')
+api.add_resource(ItemDetail, '/detail/<int:pid>')
+
+api.add_resource(BigCateView, '/category/large')
+api.add_resource(MidCateView, '/category/mid/<int:cid>')
+api.add_resource(ShowCateItem, '/category/item/<int:cid>')
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)
