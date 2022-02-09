@@ -4,6 +4,7 @@ from flasgger import Swagger
 from flask_cors import CORS
 from model import app, db, User
 from function.func_user import UserFunction, access_cookie
+from function.func_view import CategoryView, ProductFunc
 from function.func_img import Image
 
 CORS(app,supports_credentials=True)
@@ -126,73 +127,6 @@ class EventBanner(Resource):
         """
         return 200
 
-class ProductRecommand(Resource):
-    def get(self):
-        """
-        메인페이지 추천상품
-        로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
-        ---
-        tags:
-          - MainPage
-        responses:
-            0:
-                description: 비 로그인 시 0 리턴
-            200:
-                description: 로그인 인증
-                schema:
-                    id: product view 
-                    properties:
-                        id:
-                            type: int
-                            description: product_id
-                        category_small_id:
-                            type: int
-                            description: 최하위 카테고리 id
-                        name:
-                            type: string
-                            description: 상품 이름
-                            price:
-                            type: int
-                            description: 상품 가격
-                        image:
-                            type: string
-                            description: 상품 이미지 url
-                        brand:
-                            type: string
-                            description: 상품 brand 이름
-                        avg_star:
-                            type: Folat
-                            description: 상품 평균 별점
-        """
-
-        session_id = request.headers['Session']
-        user_id = access_cookie(session_id[11:])
-        if 0 == user_id:
-            return 0 # no login
-        user = User.query.filter_by(id = user_id).first()
-        return UserFunction.recommand(user.id,12,'r')
-
-class ProductTaste(Resource):
-    def get(self):
-        """
-        메인페이지 취향상품
-        로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
-        ---
-        tags:
-          - MainPage
-        responses:
-            200:
-                description: 로그인 인증
-                schema:
-                    id: product view
-        """
-        session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
-        if 0 == user_id:
-            return 0 # no login
-        user = User.query.filter_by(id = user_id).first()
-        return UserFunction.recommand(user.id,12,'t')
-
 class Mypage(Resource):
     def get(self):
         """
@@ -235,13 +169,15 @@ class CouponList(Resource):
           - Mypage
         responses:
             200:
-                properties:
-                    name:
-                        type: string
-                    content:
-                        type: string
-                    expire:
-                        type: string
+                schema:
+                    id: couponlist
+                    properties:
+                        name:
+                            type: string
+                        content:
+                            type: string
+                        expire:
+                            type: string
         """
         session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
@@ -250,6 +186,30 @@ class CouponList(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.coupon_list(user)
 
+class PointList(Resource):
+    def get(self):
+        """
+        보유한 쿠폰 리스트 반환
+        쿠폰 이름, 내용, 만료 날짜 반환
+        ---
+        tags:
+          - Mypage
+        responses:
+            200:
+                schema:
+                    id: pointlist
+                    properties:
+                        point:
+                            type: int
+                        content:
+                            type: string
+        """
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.point_list(user)
 
 class ImageUpload(Resource):
     def post(self):
@@ -323,7 +283,6 @@ class Like(Resource):
           - Like
         parameters:
           - in: path
-            name: product_id
             type: int
             requirement: true
         responses:
@@ -337,17 +296,224 @@ class Like(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.delete_like(user.id,pid)
 
+class Cart(Resource):
+    def get(self):
+        """
+        좋아요 상품 리스트
+        ---
+        tags:
+          - Cart
+        responses:
+            200:
+                description: 유저가 좋아요한 상품 리스트 보여주기
+                schema:
+                    id: product view  
+        """
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.list_cart(user.id)
+
+    def post(self):
+        """
+        상품에 좋아요 하기
+        ---
+        tags:
+          - Cart
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            requirement: true
+        responses:
+            200:
+                description: 상품 좋아요 성공
+        """
+        session_id = request.headers['Session']
+        data = request.get_json()
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.add_cart(user.id,data['product_id'])
+
+    def delete(self,pid):
+        """
+        상품에 좋아요 취소
+        ---
+        tags:
+          - Cart
+        parameters:
+          - in: path
+            type: int
+            requirement: true
+        responses:
+            200:
+                description: 상품 좋아요 취소 성공
+        """
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.delete_cart(user.id,pid)
+
+class ItemRegist(Resource):
+    def post(self):
+        """
+        상품에 좋아요 하기
+        ---
+        tags:
+          - Producer
+        parameters:
+          - in: body
+            name: category_name
+            type: string
+            requirement: true
+            description: 카테고리 이름
+          - in: body
+            name: name
+            type: string
+            requirement: true
+            description: 이름
+          - in: body
+            name: price
+            type: int
+            requirement: true
+            description: 가격
+          - in: body
+            name: image
+            type: string
+            requirement: true
+            description: 이미지 url 주소
+          - in: body
+            name: brand
+            type: string
+            requirement: true
+            description: brand 이름
+        responses:
+            200:
+                description: 상품 좋아요 성공
+        """
+        session_id = request.headers['Session']
+        data = request.get_json()
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], data['image'], data['brand'])
+
+class ProductRecommand(Resource):
+    def get(self):
+        """
+        메인페이지 추천상품
+        로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
+        ---
+        tags:
+          - MainPage
+        responses:
+            0:
+                description: 비 로그인 시 0 리턴
+            200:
+                description: 로그인 인증
+                schema:
+                    id: product view 
+                    properties:
+                        id:
+                            type: int
+                            description: product_id
+                        category_small_id:
+                            type: int
+                            description: 최하위 카테고리 id
+                        name:
+                            type: string
+                            description: 상품 이름
+                            price:
+                            type: int
+                            description: 상품 가격
+                        image:
+                            type: string
+                            description: 상품 이미지 url
+                        brand:
+                            type: string
+                            description: 상품 brand 이름
+                        avg_star:
+                            type: Folat
+                            description: 상품 평균 별점
+                        summary:
+                            type: string
+                            description: 상품 요약 설명
+        """
+
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.recommand(user.id,12,'r')
+
+class ProductTaste(Resource):
+    def get(self):
+        """
+        메인페이지 취향상품
+        로그인 안했으면 로그인을 하면 더 자세한 상품을 볼 수 있다고 표시
+        ---
+        tags:
+          - MainPage
+        responses:
+            200:
+                description: 로그인 인증
+                schema:
+                    id: product view
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.recommand(user.id,12,'t')
+
+class Search(Resource):
+    def get(self,kw):
+        """
+        item 검색
+        검색어를 path에 싫어 보냄
+        ---
+        tags:
+          - Search
+        parameters:
+          - in: path
+            type: string
+            description: 검색어 문자열
+        responses:
+            200:
+                description: 로그인 인증
+                schema:
+                    id: product view
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.search_key(kw)
+
 
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
 api.add_resource(Regist, '/regist')
 api.add_resource(EventBanner, '/main/event')
-api.add_resource(ProductRecommand, '/main/recommand')
-api.add_resource(ProductTaste, '/main/taste')
 api.add_resource(Mypage, '/mypage')
 api.add_resource(CouponList, '/coupon')
+api.add_resource(PointList, '/point')
 api.add_resource(Like, '/like/<int:pid>')
+api.add_resource(Cart, '/cart/<int:pid>')
 api.add_resource(ImageUpload, '/event/imgup')
+api.add_resource(ItemRegist, '/producer/item/regist')
+api.add_resource(ProductRecommand, '/main/recommand')
+api.add_resource(ProductTaste, '/main/taste')
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)

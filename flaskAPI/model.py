@@ -105,7 +105,7 @@ class Product(db.Model): # 상품
     image = db.Column(db.String(45), nullable=False)
     brand = db.Column(db.String(45), nullable=False)
     avg_star = db.Column(db.Float, nullable=False)
-    regist_time = db.Column(db.String(35), nullable=False) 
+    regist_time = db.Column(db.DateTime, nullable=False) 
 
     detail = db.relationship('ProductDetail', backref='product', lazy=True)
     discount = db.relationship('Discount', backref='product', lazy=True)
@@ -124,8 +124,8 @@ class ProductDetail(db.Model): # 상품 상세 설명
 class Discount(db.Model): # 상품 할인 정보
     __tablename__="discount"
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
-    start_date = db.Column(db.String(35), nullable=False)
-    end_date = db.Column(db.String(35), nullable=False)
+    start_date = db.Column(db.DateTime, nullable=False)
+    end_date = db.Column(db.DateTime, nullable=False)
     rate = db.Column(db.Float, nullable=False)
 
 class Event(db.Model):
