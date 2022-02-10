@@ -212,7 +212,6 @@ class PointList(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.point_list(user)
 
-
 class ImageUpload(Resource):
     def post(self):
         """
@@ -467,6 +466,9 @@ class ProductRecommand(Resource):
                         amount:
                             type: int
                             description: 상품 최종 가격 (할인하는 상품만 존재)
+                        like:
+                            type: int
+                            description: 좋아요한 상품 1, 아닌 상품 0
         """
 
         session_id = request.headers['Session']
@@ -530,10 +532,6 @@ class SearchCurrent(Resource):
         ---
         tags:
           - Search
-        parameters:
-          - in: path
-            type: string
-            description: 검색어 문자열
         responses:
             200:
                 description: 로그인 인증
@@ -559,10 +557,6 @@ class SearchPopular(Resource):
         ---
         tags:
           - Search
-        parameters:
-          - in: path
-            type: string
-            description: 검색어 문자열
         responses:
             200:
                 description: 로그인 인증
@@ -598,7 +592,8 @@ class ItemDetail(Resource):
         user_id = access_cookie(session_id)
         if 0 == user_id:
             return 0 # no login
-        return ProductFunc.show_detail_product(pid)
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.show_detail_product(user, pid)
 
 class BigCateView(Resource):
     def get(self):
@@ -682,6 +677,33 @@ class ShowCateItem(Resource):
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
         return ProductFunc.recommand(user.id,0,cid)
+
+class BuyItem(Resource):
+    def post(self):
+        """
+        상품 구매 요청
+        ---
+        tags:
+          - buy product
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            description: 상품 고유 번호
+          - in: body
+            name: point
+            type: int
+            description: 사용할 포인트
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id)
+        if 0 == user_id:
+            return 0 # no login
+        data = request.get_json()
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.buyItem(user,data['product_id'],data['point'])
+
+
 
 
 api.add_resource(Login, '/login')

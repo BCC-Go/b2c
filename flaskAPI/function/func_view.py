@@ -1,15 +1,14 @@
-from ast import keyword
-from audioop import ratecv
 from model import *
 from function.func_user import item_to_dict, all_item
 from random import randint, shuffle
     
-def product_preview(item, n):
+def product_preview(item, n, uid):
     result = []
     for i in range(n):
         res = item_to_dict(item[i][0])
         res.update(item_to_dict(item[i][1]))
         result.append(ProductFunc.discount(res,item[i][0].id))
+        result.append(ProductFunc.like(res,item[i][0].id, uid))
     return result
 
 class CategoryView():
@@ -41,9 +40,9 @@ class ProductFunc():
         db.session.commit()
         return '상품등록 성공', 200 
         
-    def show_detail_product(product_id):
+    def show_detail_product(uid, product_id):
         items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.id == product_id).first()
-        return product_preview(items, 1)
+        return product_preview(items, 1, uid)
 
     def find_small_category(category_mid_id):
         cate_list = CategorySmall.query.filter_by(category_mid_id = category_mid_id).all()
@@ -62,11 +61,12 @@ class ProductFunc():
         items2 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[1]).all()
         #items1 = Product.query.filter_by(category_small_id = reco[0]).all()
         #items2 = Product.query.filter_by(category_small_id = reco[1]).all()
+        
         item = items1+items2
         shuffle(item)
         if num == 0 or num > len(item):
             num = len(item)
-        return product_preview(item,num)
+        return product_preview(item,num, id)
 
     def discount(res, id):
         discount = Discount.query.filter_by(product_id = id).first()
@@ -88,6 +88,32 @@ class ProductFunc():
                 res['amount'] = amount
                 return res
             return res
+
+    def like(res, pid, uid):
+        like = Like.query.filter_by(user_id = uid, product_id = pid)
+        if like == []:
+            res['like'] = 0
+        else:
+            res['like'] = 1
+        return res
+
+    def buyItem(user,pid,point,count):
+        item = Product.query.filter_by(id = pid).first()
+        discount = Discount.query.filter_by(product_id = pid).first()
+        if discount == []:
+            price = item.price * count - point
+        else:
+            if discount.rate < 100:
+                price = count * (item.price * (100-discount.rate) / 100) - point
+            else:
+                price = count * (item.price - discount.rate) - point
+        content = "{}".format('point : ' + str(point) + '을(를) 사용하여 ',item.name, ' 상품을 구매')
+        pp = Point(user_id = user.id,point = 0 - point, content = content)
+        db.session.add(pp)
+        db.session.commit()
+        return price
+        
+        
         
 
 
@@ -96,7 +122,7 @@ class Search():
         Search.manage(id, kw)
         search = '%%{}%%'.format(kw)
         items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.name.ilike(search)).all()
-        return product_preview(items, len(items))
+        return product_preview(items, len(items), id)
 
     # 최근 검색어 10개 이하로 관리하기
     def manage(id, kw):

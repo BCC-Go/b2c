@@ -68,7 +68,7 @@ class Point(db.Model): # 포인트
     __tablename__="point"
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    point = db.Column(db.BINARY(6), nullable=False)
+    point = db.Column(db.BINARY(10), nullable=False)
     content = db.Column(db.String(100))
 
 class CouponContent(db.Model): # 쿠폰 내용
