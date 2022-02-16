@@ -694,6 +694,10 @@ class BuyItem(Resource):
             name: point
             type: int
             description: 사용할 포인트
+          - in: body
+            name: count
+            type: int
+            description: 구매 할 수
         """
         session_id = request.cookies.get('session_id')
         user_id = access_cookie(session_id)
@@ -701,7 +705,7 @@ class BuyItem(Resource):
             return 0 # no login
         data = request.get_json()
         user = User.query.filter_by(id = user_id).first()
-        return ProductFunc.buyItem(user,data['product_id'],data['point'])
+        return ProductFunc.buyItem(user,data['product_id'],data['point'],data['count'])
 
 
 

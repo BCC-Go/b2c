@@ -1,3 +1,4 @@
+from nbformat import write
 from config.config_flask import timedelta
 from model import *
 
@@ -106,3 +107,26 @@ class UserFunction():
         cart = Cart.query.filter_by(user_id = uid , product_id = pid).first()
         db.session.delete(cart)
         db.session.commit()
+
+
+    #리뷰 관련
+    def regist_review(uid,pid,content,image,star):
+        review = Review(user_id = uid, product_id = pid, content = content, image = image, star = star, write_time = koreaNow())
+        item = Product.query.filter_by(id = pid).first()
+        re = db.session.query(Review.star).filter(Product.product_id == pid).all()
+        re = [re[i][0] for i in range(len(re))]
+        avg_star = sum(re)/len(re)
+        item.avg_star = avg_star
+        db.session.add(review)
+        db.session.commit()
+    
+    def load_review(pid):
+        review = Review.query.filter_by(product_id = pid).all()
+        result = []
+        for item in review:
+            name = db.session.query(User.name).filter(User.id == item.user_id).first()
+            uname = name[0][0]+'*'+name[0][2:]
+            item = item_to_dict(item)
+            item['name'] = uname
+            result.append(item)
+        return result

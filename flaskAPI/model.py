@@ -188,7 +188,7 @@ class Review(db.Model): # 리뷰
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     content = db.Column(db.String(500), nullable=False)
-    image = db.Column(db.String(45), nullable=False)
+    image = db.Column(db.String(45))
     star = db.Column(db.Float, nullable=False)
     write_time = db.Column(db.String(35), nullable=False)
 
