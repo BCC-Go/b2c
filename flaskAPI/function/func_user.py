@@ -21,14 +21,20 @@ def all_item(item, n):
 class UserFunction():
     def login(login_id, password):
         user = User.query.filter_by(login_id=login_id).first()
-        if user.password == password:
-            expires_in = timedelta(minutes=30)  # cookie 기간
-            expires = koreaNow() + expires_in
-            session = Session(user_id = user.id, expires = expires)
-            db.session.add(session)
-            db.session.commit()
-            return session.id
+        if user:
+            if user.password == password:
+                expires_in = timedelta(minutes=30)  # cookie 기간
+                expires = koreaNow() + expires_in
+                session = Session(user_id = user.id, expires = expires)
+                db.session.add(session)
+                db.session.commit()
+                return session.id
         return 0
+
+    def logout(uid):
+        user = Session.query.filter_by(user_id=uid).first()
+        db.session.delete(user)
+        db.session.commit()
 
     def regist(login_id, password, name, phone, sex, birth, address):
         if User.query.filter_by(login_id==login_id):
@@ -110,7 +116,7 @@ class UserFunction():
 
 
     #리뷰 관련
-    def regist_review(uid,pid,content,image,star):
+    def regist_review(uid,pid,content,image,star): # 등록
         review = Review(user_id = uid, product_id = pid, content = content, image = image, star = star, write_time = koreaNow())
         item = Product.query.filter_by(id = pid).first()
         re = db.session.query(Review.star).filter(Product.product_id == pid).all()
@@ -120,7 +126,7 @@ class UserFunction():
         db.session.add(review)
         db.session.commit()
     
-    def load_review(pid):
+    def load_review(pid): # 보여주기
         review = Review.query.filter_by(product_id = pid).all()
         result = []
         for item in review:
@@ -130,3 +136,30 @@ class UserFunction():
             item['name'] = uname
             result.append(item)
         return result
+
+
+    #질문 관련
+    def regist_question(uid,pid,title,content,hashtag): # 등록
+        question = Question(user_id = uid, product_id = pid, titel = title, content = content, hashtag = hashtag, write_time = koreaNow())
+        db.session.add(question)
+        db.session.commit()
+
+    def load_question(pid): # 보여주기
+        question = db.session.query(Question,Answer).filter(Question.product_id == pid, Question.id == Answer.question_id).all()
+        result = []
+        dict = lambda r: {r.__table__.name+'_'+c.name: str(getattr(r, c.name)) for c in r.__table__.columns}
+        for item in question:
+            res = dict(item[0])
+            name = db.session.query(User.name).filter(User.id == item[1].user_id).first()
+            uname = name[0][0]+'*'+name[0][2:]
+            res['name'] = uname
+            res.update(dict(item[1]))
+            result.append(res)
+
+    def answer_question(writer,qid, content): # 답변 등록
+        if writer.type == 0:
+            return 0
+        answer = Answer(question_id = qid, user_id = writer.id, content = content, write_time = koreaNow())
+        db.session.add(answer)
+        db.session.commit()
+        return 1

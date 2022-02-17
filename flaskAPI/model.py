@@ -190,7 +190,7 @@ class Review(db.Model): # 리뷰
     content = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(45))
     star = db.Column(db.Float, nullable=False)
-    write_time = db.Column(db.String(35), nullable=False)
+    write_time = db.Column(db.DateTime, nullable=False)
 
 class Question(db.Model): # 질문
     __tablename__="question"
@@ -200,7 +200,7 @@ class Question(db.Model): # 질문
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.String(500), nullable=False)
     hashtag = db.Column(db.String(30), nullable=False)
-    write_time = db.Column(db.String(35), nullable=False)
+    write_time = db.Column(db.DateTime, nullable=False)
 
     answer = db.relationship('Answer', backref='question', lazy=True)
 
@@ -209,7 +209,7 @@ class Answer(db.Model): # 질문
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # user type : 2(판매자)
     content = db.Column(db.String(500), nullable=False)
-    write_time = db.Column(db.String(35), nullable=False)
+    write_time = db.Column(db.DateTime, nullable=False)
 
 class Buylist(db.Model): # 구매목록
     __tablename__="buylist"

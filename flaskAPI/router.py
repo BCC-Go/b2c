@@ -34,33 +34,32 @@ class Login(Resource):
                 description: cookie in request header
         """
         data = request.get_json()
-        print(request.headers['Session'])
         session = UserFunction.login(data['login_id'],data['password'])
-        if session == 0:
-            return "Not Found"
-        
         resp = make_response(jsonify({'session_id': session}))
-        resp.set_cookie('session_id',str(session))
+
+        if session == 0:
+            return resp
         return resp
 
 class Logout(Resource):
-    def put(self):
+    def post(self):
         """
         delete cookie 
         ---
         tags:
           - Logout
-
         responses:
             200:
                 description: cookie is expired
         """
-        session_id = request.cookies.get('session_id')
-        db.session.delete(Session.query.filter_by(id=session_id).first())
-        db.session.commit()
-        response = make_response('logout')
-        return response
-
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        UserFunction.logout(user.id)
+        return 200
+        
 class Regist(Resource):
     def post(self):
         """
@@ -493,7 +492,7 @@ class ProductTaste(Resource):
                     id: product view
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
@@ -518,7 +517,7 @@ class Search(Resource):
                     id: product view
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
@@ -543,7 +542,7 @@ class SearchCurrent(Resource):
                             description: 키워드 리스트, 순서대로 사용하면 됩니다
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
@@ -564,7 +563,7 @@ class SearchPopular(Resource):
                     id: keyword
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
@@ -589,7 +588,7 @@ class ItemDetail(Resource):
                     id: product view
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
@@ -618,7 +617,7 @@ class BigCateView(Resource):
                             description: 카테고리 이미지 url
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         return CategoryView.show_category_all()
@@ -648,7 +647,7 @@ class MidCateView(Resource):
                             description: 카테고리 이름
         """
         session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         return CategoryView.show_category_mid(cid)
@@ -671,8 +670,8 @@ class ShowCateItem(Resource):
                 schema:
                     id: product_view
         """
-        session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
@@ -699,15 +698,205 @@ class BuyItem(Resource):
             type: int
             description: 구매 할 수
         """
-        session_id = request.cookies.get('session_id')
-        user_id = access_cookie(session_id)
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
         data = request.get_json()
         user = User.query.filter_by(id = user_id).first()
         return ProductFunc.buyItem(user,data['product_id'],data['point'],data['count'])
 
+class ReviewLoad(Resource):
+    def get(self,pid):
+        """
+        상품에 대한 리뷰 내용
+        ---
+        tags:
+          - Review
+        parameters:
+          - in: path
+            type: int
+            description: 상품 고유 번호
+        responses:
+            200:
+                description: 상품에 대한 리뷰 읽어오기
+                schema:
+                    id: review_view
+                    properties:
+                        name:
+                            type: string
+                            description: 유저 이름
+                        content:
+                            type: string
+                            description: 리뷰 내용
+                        image:
+                            type: string    
+                            description: 리뷰 이미지 url
+                        star:
+                            type: float
+                            description: 유저가 준 별점
+                        write_time:
+                            type: string
+                            description: 리뷰 작성 날짜 및 시간
+        """    
+        return UserFunction.load_review(pid)
 
+class ReviewRegist(Resource):
+    def post(self):
+        """
+        상품에 리뷰 등록하기
+        ---
+        tags:
+          - Review
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            description: 상품 고유 번호
+          - in: body
+            name: content
+            type: string
+            description: 유저가 쓴 리뷰 내용
+          - in: body
+            name: star
+            type: float
+            description: 유저가 준 별점
+          - in: body
+            name: image
+            type: file
+            description: 차후 수정
+        responses:
+            200:
+                description: 상품에 리뷰 등록 성공
+        """    
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        data = request.get_json()
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.regist_review(user.id,data['product_id'],data['content'],'image',data['star'])
+
+class QuestionLoad(Resource):
+    def get(self,pid):
+        """
+        상품에 대한 리뷰 내용
+        ---
+        tags:
+          - Question
+        parameters:
+          - in: path
+            type: int
+            description: 상품 고유 번호
+        responses:
+            200:
+                description: 상품에 대한 질문 읽어오기
+                schema:
+                    id: question_view
+                    properties:
+                        question_title:
+                            type: string
+                            description: 질문 제목
+                        question_content:
+                            type: string
+                            description: 질문 내용
+                        question_hashtag:
+                            type: string    
+                            description: 질문 hashtag
+                        question_write_time:
+                            type: string
+                            description: 질문 등록 시잔
+                        name:
+                            type: string
+                            description: 답변자 이름
+                        answer_content:
+                            type: string
+                            description: 답변 내용
+                        answer_write_time:
+                            type: string
+                            description: 답변 등록 시잔
+        """    
+        return UserFunction.load_question(pid)
+
+class QuestionRegist(Resource):
+    def post(self):
+        """
+        상품에 질문 등록하기
+        ---
+        tags:
+          - Question
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            description: 상품 고유 번호
+          - in: body
+            name: title
+            type: string
+            description: 질문 제목
+          - in: body
+            name: content
+            type: string
+            description: 질문 내용
+          - in: body
+            name: content
+            type: string
+            description: 질문 내용
+          - in: body
+            name: hashtag
+            type: string
+            description: hashtag
+        responses:
+            200:
+                description: 상품에 질문 등록 성공
+        """    
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        data = request.get_json()
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.regist_question(user.id,data['product_id'],data['title'],data['content'],data['hashtag'])
+
+class AnswerRegist(Resource):
+    def post(self):
+        """
+        상품에 질문 등록하기
+        ---
+        tags:
+          - Question
+        parameters:
+          - in: body
+            name: product_id
+            type: int
+            description: 상품 고유 번호
+          - in: body
+            name: title
+            type: string
+            description: 질문 제목
+          - in: body
+            name: content
+            type: string
+            description: 질문 내용
+          - in: body
+            name: content
+            type: string
+            description: 질문 내용
+          - in: body
+            name: hashtag
+            type: string
+            description: hashtag
+        responses:
+            200:
+                description: 상품에 질문 등록 성공
+        """    
+        session_id = request.headers['Session']
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        data = request.get_json()
+        user = User.query.filter_by(id = user_id).first()
+        return UserFunction.regist_question(user.id,data['product_id'],data['title'],data['content'],data['hashtag'])
 
 
 api.add_resource(Login, '/login')
@@ -733,6 +922,13 @@ api.add_resource(ItemDetail, '/detail/<int:pid>')
 api.add_resource(BigCateView, '/category/large')
 api.add_resource(MidCateView, '/category/mid/<int:cid>')
 api.add_resource(ShowCateItem, '/category/item/<int:cid>')
+
+api.add_resource(ReviewLoad, '/product/review/<int:pid>')
+api.add_resource(ReviewRegist, '/product/review/regist')
+api.add_resource(QuestionLoad, '/product/question/<int:pid>')
+api.add_resource(QuestionRegist, '/product/question/regist')
+api.add_resource(AnswerRegist, '/product/question/answer/regist')
+
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug=True)

@@ -19,13 +19,6 @@ class CategoryView():
     def show_category_mid(category_large_id):
         category = CategoryMid.query.filter_by(category_large_id=category_large_id).all()
         return all_item(category,len(category))
-    
-    # def show_item(category_mid_id):
-    #     category = CategorySmall.query.filter_by(category_mid_id=category_mid_id).all()
-    #     product = Product.query.filter_by(category_mid_id=category_mid_id).all()
-    #     res=[]
-    #     for i in range(len(category)-1):
-    #         res.append(category[i].id)
 
 class ProductFunc():
     def regist_product(user, category_name, name, price, image, brand, summary, detail):
