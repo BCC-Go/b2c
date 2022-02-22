@@ -585,7 +585,7 @@ class SearchPopular(Resource):
                 schema:
                     id: keyword
         """
-        session_id = request.cookies.get('session_id')
+        session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -610,7 +610,7 @@ class ItemDetail(Resource):
                 schema:
                     id: product view
         """
-        session_id = request.cookies.get('session_id')
+        session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -639,7 +639,7 @@ class BigCateView(Resource):
                             type: string
                             description: 카테고리 이미지 url
         """
-        session_id = request.cookies.get('session_id')
+        session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -669,7 +669,7 @@ class MidCateView(Resource):
                             type: string
                             description: 카테고리 이름
         """
-        session_id = request.cookies.get('session_id')
+        session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
