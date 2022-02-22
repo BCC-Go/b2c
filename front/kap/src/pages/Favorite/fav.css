@@ -1,0 +1,70 @@
+@media (max-width : 480px){
+    .Main{
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+    }
+    .Searchbox{
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 10px;
+    
+    }
+    .Searchin{
+        border: none;
+        border-bottom: 1px solid black;
+        text-align: center;
+        width: 60vw;
+    }
+    
+    .Body22{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .Count{
+        display: flex;
+        margin:10px;
+        margin-left: 30px;
+    }
+    .CountNumber{
+        color: red;
+        margin-left: 7px;
+    }
+    .ContentBox1{
+        border: 1px solid black;
+        width: 150px;
+        height: 230px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        text-align: start;
+    }
+    .ContentPic1{
+        height: 140px;
+        width: 150px;
+        border: 1px solid red;
+    }
+.likecart{
+    display: flex;
+    justify-content: space-between;
+}
+.click{
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    height: 22px;
+    width: 21px;
+    cursor: pointer;
+    border: none;
+}
+.both{
+    display: flex;
+    width: 50px;
+    justify-content: space-between;
+}
+
+    
+    }
+    
