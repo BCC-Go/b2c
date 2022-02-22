@@ -417,7 +417,10 @@ class ItemRegist(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], data['image'], data['brand'], data['summary'], data['detail'])
+        if user.type == 1:
+          return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], data['image'], data['brand'], data['summary'], data['detail'])
+        else:
+          return "No auth",500
 
 class ProductRecommand(Resource):
     def get(self):
@@ -497,6 +500,26 @@ class ProductTaste(Resource):
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
         return ProductFunc.recommand(user.id,12,'t')
+
+class NewProduct(Resource):
+    def get(self):
+        """
+        신상품 페이지
+        ---
+        tags:
+          - Product View
+        responses:
+            200:
+                description: 로그인 인증
+                schema:
+                    id: product view
+        """
+        session_id = request.cookies.get('session_id')
+        user_id = access_cookie(session_id[11:])
+        if 0 == user_id:
+            return 0 # no login
+        user = User.query.filter_by(id = user_id).first()
+        return ProductFunc.newItem(user.id)
 
 class Search(Resource):
     def get(self,kw):
@@ -913,6 +936,7 @@ api.add_resource(ItemRegist, '/producer/item/regist')
 
 api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
+api.add_resource(NewProduct, '/product/new')
 
 api.add_resource(Search, '/search/<string:keyword>')
 api.add_resource(SearchCurrent, '/search/current')
@@ -928,6 +952,7 @@ api.add_resource(ReviewRegist, '/product/review/regist')
 api.add_resource(QuestionLoad, '/product/question/<int:pid>')
 api.add_resource(QuestionRegist, '/product/question/regist')
 api.add_resource(AnswerRegist, '/product/question/answer/regist')
+
 
 
 if __name__ == "__main__":

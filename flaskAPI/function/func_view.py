@@ -1,3 +1,4 @@
+from datetime import timedelta
 from model import *
 from function.func_user import item_to_dict, all_item
 from random import randint, shuffle
@@ -105,9 +106,10 @@ class ProductFunc():
         db.session.add(pp)
         db.session.commit()
         return price
-        
-        
-        
+    
+    def newItem(uid):
+        item = Product.query.filter(Product.regist_time > koreaNow() - timedelta(days = 7)).order_by(Product.id.desc()).all()
+        return product_preview(item, len(item), uid)
 
 
 class Search():
