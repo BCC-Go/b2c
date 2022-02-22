@@ -1,0 +1,11 @@
+
+@media (max-width : 480px){
+    .slideindex {
+      text-align: center;
+      border: 1px solid black;
+      max-height: 200px;
+    }
+    
+  }
+  
+  
