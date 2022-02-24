@@ -1,4 +1,3 @@
-from nbformat import write
 from config.config_flask import timedelta
 from model import *
 
@@ -23,7 +22,7 @@ class UserFunction():
         user = User.query.filter_by(login_id=login_id).first()
         if user:
             if user.password == password:
-                expires_in = timedelta(minutes=30)  # cookie 기간
+                expires_in = timedelta(hours=3)  # cookie 기간
                 expires = koreaNow() + expires_in
                 session = Session(user_id = user.id, expires = expires)
                 db.session.add(session)

@@ -8,8 +8,7 @@ def product_preview(item, n, uid):
     for i in range(n):
         res = item_to_dict(item[i][0])
         res.update(item_to_dict(item[i][1]))
-        result.append(ProductFunc.discount(res,item[i][0].id))
-        result.append(ProductFunc.like(res,item[i][0].id, uid))
+        result.append(ProductFunc.discount(res,item[i][0].id, uid))
     return result
 
 class CategoryView():
@@ -40,7 +39,10 @@ class ProductFunc():
 
     def find_small_category(category_mid_id):
         cate_list = CategorySmall.query.filter_by(category_mid_id = category_mid_id).all()
-        return [cate_list[randint(1,len(cate_list)-1)].id, cate_list[randint(1,len(cate_list)-1)].id]
+        cate = [cate_list[randint(0,len(cate_list)-1)].id]
+        cate_list.remove(cate_list[cate[0]-1])
+        cate.append(cate_list[randint(0,len(cate_list)-1)].id)
+        return cate
 
     def recommand(id,num,type):
         if type == 'r':
@@ -55,23 +57,28 @@ class ProductFunc():
         items2 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[1]).all()
         #items1 = Product.query.filter_by(category_small_id = reco[0]).all()
         #items2 = Product.query.filter_by(category_small_id = reco[1]).all()
-        
         item = items1+items2
         shuffle(item)
         if num == 0 or num > len(item):
             num = len(item)
         return product_preview(item,num, id)
 
-    def discount(res, id):
-        discount = Discount.query.filter_by(product_id = id).first()
-        if discount == []:
+    def discount(res, pid, uid):
+        discount = Discount.query.filter_by(product_id = pid).first()
+        like2 = Like.query.filter_by(user_id = uid, product_id = pid)
+        if not like2:
+            res['like'] = 0
+        else:
+            res['like'] = 1
+        
+        if not discount:
             return res
         else:
             if discount.expire() == 0:
                 db.session.delete(discount)
                 db.session.commit()
             if discount.expire() == 1:
-                item = Product.query.filter_by(id = id).first()
+                item = Product.query.filter_by(id = pid).first()
                 if discount.rate < 100:
                     amount = item.price * (100-discount.rate) / 100
                     rate = str(discount.rate)+'%'
@@ -82,14 +89,6 @@ class ProductFunc():
                 res['amount'] = amount
                 return res
             return res
-
-    def like(res, pid, uid):
-        like = Like.query.filter_by(user_id = uid, product_id = pid)
-        if like == []:
-            res['like'] = 0
-        else:
-            res['like'] = 1
-        return res
 
     def buyItem(user,pid,point,count):
         item = Product.query.filter_by(id = pid).first()

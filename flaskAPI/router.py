@@ -1,11 +1,13 @@
 from flask import make_response, jsonify, request
 from flask_restful import Api, Resource, reqparse
+from flask_restful.reqparse import RequestParser
 from flasgger import Swagger
 from flask_cors import CORS
 from model import app, db, User
 from function.func_user import UserFunction, access_cookie
 from function.func_view import CategoryView, ProductFunc
 from function.func_img import Image
+from werkzeug.datastructures import FileStorage
 
 CORS(app,supports_credentials=True)
 api = Api(app)
@@ -227,6 +229,7 @@ class ImageUpload(Resource):
                 description: upload success
 
         """
+        # f = request.files['file']
         data = request.get_json()
         Image.upload(data['url'])
 
@@ -447,7 +450,7 @@ class ProductRecommand(Resource):
                         name:
                             type: string
                             description: 상품 이름
-                            price:
+                        price:
                             type: int
                             description: 상품 가격
                         image:
@@ -691,7 +694,7 @@ class ShowCateItem(Resource):
             200:
                 description: 중간 카테고리 관련 상품 보기
                 schema:
-                    id: product_view
+                    id: product view
         """
         session_id = request.headers['Session']
         user_id = access_cookie(session_id[11:])
@@ -921,6 +924,23 @@ class AnswerRegist(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.regist_question(user.id,data['product_id'],data['title'],data['content'],data['hashtag'])
 
+class ImageUp(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('images', FileStorage, 'images', 'appand')
+        args = parser.parse_args()
+        img = args['images']
+        img_name = args['imgName']
+        root_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        img_path = os.path.join(root_dir, 'static', 'images', img_name)
+        with open(img_path, 'wb') as fh:
+            fh.write(img.read())
+        resp = make_response(img_name)
+        resp.content_type = 'text/plain'
+        return resp
+
+
+api.add_resource(ImageUp, '/uplo')
 
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
