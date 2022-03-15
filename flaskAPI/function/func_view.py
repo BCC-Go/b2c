@@ -35,11 +35,10 @@ class ProductFunc():
         
     def show_detail_product(uid, product_id):
         items = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.id == product_id).first()
-        result = []
         res = item_to_dict(items[0])
         res.update(item_to_dict(items[1]))
-        result.append(ProductFunc.discount(res,items[0].id, uid.id))
-        return result
+        ProductFunc.discount(res,items[0].id, uid.id)
+        return res
 
     def find_small_category(category_mid_id):
         cate_list = CategorySmall.query.filter_by(category_mid_id = category_mid_id).all()
@@ -69,7 +68,7 @@ class ProductFunc():
 
     def discount(res, pid, uid):
         discount = Discount.query.filter_by(product_id = pid).first()
-        like2 = Like.query.filter_by(user_id = uid, product_id = pid)
+        like2 = Like.query.filter_by(user_id = uid, product_id = pid).first()
         if not like2:
             res['like'] = 0
         else:

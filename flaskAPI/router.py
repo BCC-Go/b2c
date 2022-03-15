@@ -237,7 +237,7 @@ class ImageUpload(Resource):
 
 # 상품 유저 관련
 class Like(Resource):
-    def get(self):
+    def get(self,pid):
         """
         좋아요 상품 리스트
         ---
@@ -256,7 +256,7 @@ class Like(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.list_like(user.id)
 
-    def post(self):
+    def post(self,pid):
         """
         상품에 좋아요 하기
         ---
@@ -277,7 +277,7 @@ class Like(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return UserFunction.add_like(user.id,data['product_id'])
+        return UserFunction.add_like(user.id,data['pid'])
 
     def delete(self,pid):
         """
@@ -302,7 +302,7 @@ class Like(Resource):
         return UserFunction.delete_like(user.id,pid)
 
 class Cart(Resource):
-    def get(self):
+    def get(self,pid):
         """
         좋아요 상품 리스트
         ---
@@ -321,7 +321,7 @@ class Cart(Resource):
         user = User.query.filter_by(id = user_id).first()
         return UserFunction.list_cart(user.id)
 
-    def post(self):
+    def post(self,pid):
         """
         상품에 좋아요 하기
         ---
@@ -342,7 +342,7 @@ class Cart(Resource):
         if 0 == user_id:
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
-        return UserFunction.add_cart(user.id,data['product_id'])
+        return UserFunction.add_cart(user.id,data['pid'])
 
     def delete(self,pid):
         """
