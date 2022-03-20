@@ -229,9 +229,9 @@ class ImageUpload(Resource):
                 description: upload success
 
         """
-        # f = request.files['file']
-        data = request.get_json()
-        Image.upload(data['url'])
+        f = request.files['file']
+        #data = request.get_json()
+        Image.upload(f)
 
         return "success"
 
