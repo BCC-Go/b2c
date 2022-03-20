@@ -46839,3 +46839,1390 @@ Traceback (most recent call last):
 OSError: [Errno 98] Address already in use
 211.212.120.185 - - [15/Mar/2022 13:14:40] "[33mGET / HTTP/1.1[0m" 404 -
 211.212.120.185 - - [15/Mar/2022 13:14:41] "[33mGET / HTTP/1.1[0m" 404 -
+ * Serving Flask app 'config.config_flask' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://10.0.0.142:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+218.235.241.117 - - [16/Mar/2022 06:55:45] "OPTIONS /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:45] "POST /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:47] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:47] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:47] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:47] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:50] "OPTIONS /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:50] "GET /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:51] "OPTIONS /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:51] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:51] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:51] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:51] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:51] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:52] "OPTIONS /detail/2 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:52] "GET /detail/2 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:55:54] "[33mOPTIONS /product/review/ll/detail/2 HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 06:55:58] "[33mOPTIONS /product/review/ll/detail/2 HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 06:56:44] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 06:56:50] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 06:57:23] "[33mOPTIONS /product/review/alhost:3001/Category/mid/small/detail/2 HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 06:57:40] "[33mOPTIONS /product/review//detail/2 HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 06:57:51] "[32mOPTIONS /product/review//2 HTTP/1.1[0m" 308 -
+218.235.241.117 - - [16/Mar/2022 06:58:00] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:00] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:01] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:01] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:01] "OPTIONS /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:01] "GET /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:02] "OPTIONS /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:02] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:02] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:02] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:03] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:03] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:04] "OPTIONS /detail/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:04] "GET /detail/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:07] "[32mOPTIONS /product/review//4 HTTP/1.1[0m" 308 -
+218.235.241.117 - - [16/Mar/2022 06:58:20] "[33mOPTIONS /product/review/ HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 06:58:23] "[33mOPTIONS /product/review/ HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 06:58:31] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:31] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:34] "OPTIONS /detail/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:34] "GET /detail/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:36] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:36] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:39] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:58:41] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:59:56] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 06:59:56] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:00:26] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:00:27] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:00:30] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:00:36] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:00:36] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:00:37] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:00:39] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+218.235.241.117 - - [16/Mar/2022 07:01:09] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:01:09] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:01:15] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:01:15] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:08:12] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:08:12] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:14:34] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:14:34] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:16:04] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:16:04] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:22:51] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:22:51] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:27:25] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:27:25] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:27:53] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:27:53] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:38:26] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:38:26] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:38:37] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:38:37] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:38:57] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:38:57] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:39:34] "OPTIONS /detail/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:39:34] "[35m[1mGET /detail/4 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 617, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+218.235.241.117 - - [16/Mar/2022 07:39:36] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:39:36] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:40:00] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:40:00] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:40:37] "OPTIONS /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:40:37] "GET /product/review/4 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:01] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:01] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:01] "[35m[1mGET /mypage HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 158, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+218.235.241.117 - - [16/Mar/2022 07:51:01] "[35m[1mGET /category/large HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 646, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+218.235.241.117 - - [16/Mar/2022 07:51:06] "OPTIONS /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:06] "POST /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:08] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:08] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:08] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:08] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:11] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:11] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:20] "[33mOPTIONS /like/ HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 07:51:20] "[33mOPTIONS /like/ HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 07:51:20] "[33mOPTIONS /like HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 07:51:22] "[33mOPTIONS /like/ HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 07:51:22] "[33mOPTIONS /like HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 07:51:22] "[33mOPTIONS /like/ HTTP/1.1[0m" 404 -
+218.235.241.117 - - [16/Mar/2022 07:51:25] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:25] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:27] "OPTIONS /coupon HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:27] "GET /coupon HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:27] "GET /coupon HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:27] "GET /coupon HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:27] "GET /coupon HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:28] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:33] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:33] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:33] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:33] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:34] "OPTIONS /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:34] "GET /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:35] "OPTIONS /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:35] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:35] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:35] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:35] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:35] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:36] "OPTIONS /cart/0 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:37] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:41] "POST /cart/0 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:45] "OPTIONS /cart/0 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:45] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:47] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:48] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:48] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:49] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:49] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:49] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:49] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:49] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:49] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:50] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:50] "OPTIONS /cart/0 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:50] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:50] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:50] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:51] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:51] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:51:55] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:51:55] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:52:00] "OPTIONS /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:52:21] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 341, in post
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 6, in access_cookie
+    session = Session.query.filter_by(id=session_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:21] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 341, in post
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 6, in access_cookie
+    session = Session.query.filter_by(id=session_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:25] "[35m[1mGET /mypage HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 158, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 6, in access_cookie
+    session = Session.query.filter_by(id=session_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:25] "[35m[1mGET /category/large HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 646, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 6, in access_cookie
+    session = Session.query.filter_by(id=session_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:30] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 39, in post
+    session = UserFunction.login(data['login_id'],data['password'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 28, in login
+    user = User.query.filter_by(login_id=login_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:31] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 39, in post
+    session = UserFunction.login(data['login_id'],data['password'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 28, in login
+    user = User.query.filter_by(login_id=login_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:51] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 39, in post
+    session = UserFunction.login(data['login_id'],data['password'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 28, in login
+    user = User.query.filter_by(login_id=login_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:51] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 39, in post
+    session = UserFunction.login(data['login_id'],data['password'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 28, in login
+    user = User.query.filter_by(login_id=login_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:51] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:52:51] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:52:51] "OPTIONS /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:52:55] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 39, in post
+    session = UserFunction.login(data['login_id'],data['password'])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 28, in login
+    user = User.query.filter_by(login_id=login_id).first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2810, in first
+    return self.limit(1)._iter().first()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/query.py", line 2897, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 1533, in _connection_for_bind
+    engine, execution_options
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/home/ec2-user/b2c/flaskAPI/lib64/python3.7/site-packages/sqlalchemy/pool/impl.py", line 138, in _do_get
+    code="3o7r",
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 10 reached, connection timed out, timeout 30.00 (Background on this error at: https://sqlalche.me/e/14/3o7r)
+218.235.241.117 - - [16/Mar/2022 07:52:55] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+ * Serving Flask app 'config.config_flask' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://10.0.0.142:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 243-674-906
+218.235.241.117 - - [16/Mar/2022 07:53:02] "OPTIONS /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:02] "POST /login HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:06] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:06] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:06] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:06] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:07] "OPTIONS /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:07] "GET /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:07] "OPTIONS /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:07] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:07] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:08] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:08] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:08] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:09] "OPTIONS /cart/0 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:09] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:53:13] "[35m[1mPOST /cart/0 HTTP/1.1[0m" 500 -
+218.235.241.117 - - [16/Mar/2022 07:53:17] "OPTIONS /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:17] "OPTIONS /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:17] "GET /category/large HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:17] "GET /mypage HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:18] "OPTIONS /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:18] "GET /category/mid/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:19] "OPTIONS /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:19] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:19] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:19] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:19] "GET /category/item/1 HTTP/1.1" 200 -
+218.235.241.117 - - [16/Mar/2022 07:53:19] "GET /category/item/1 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:19:50] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:19:50] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:00] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:00] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:01] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:01] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:02] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:03] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:25] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:25] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:26] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:20:26] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:24:14] "OPTIONS /login HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:24:14] "POST /login HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:24:16] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:24:16] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:24:16] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:24:16] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:43] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:43] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:47] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:50] "[33mOPTIONS /like HTTP/1.1[0m" 404 -
+59.14.197.136 - - [16/Mar/2022 08:28:51] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:51] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:52] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:52] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:52] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:52] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:55] "[33mOPTIONS /like HTTP/1.1[0m" 404 -
+59.14.197.136 - - [16/Mar/2022 08:28:55] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:55] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:28:56] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:32:22] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:32:22] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:32:22] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:32:22] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:33:37] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:33:37] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:33:50] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:33:50] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:35:09] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:35:09] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:35:15] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:35:15] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:35:34] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 08:36:29] "[33mOPTIONS /cart/ HTTP/1.1[0m" 404 -
+59.14.197.136 - - [16/Mar/2022 08:40:38] "[33mOPTIONS /cart/ HTTP/1.1[0m" 404 -
+59.14.197.136 - - [16/Mar/2022 08:42:48] "[33mOPTIONS /cart/ HTTP/1.1[0m" 404 -
+59.14.197.136 - - [16/Mar/2022 08:44:47] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:44:47] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:44:47] "GET /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:44:47] "GET /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:44:50] "[33mOPTIONS /cart/ HTTP/1.1[0m" 404 -
+59.14.197.136 - - [16/Mar/2022 08:46:18] "OPTIONS /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:46:19] "GET /like/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:47:38] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 08:47:44] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 08:47:46] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 08:47:55] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 08:49:30] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:49:30] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:49:39] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:49:39] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:49:53] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:49:53] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:50:28] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:50:28] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:57:10] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:57:10] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:57:19] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 08:57:19] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:04:11] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:04:11] "[35m[1mGET /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 318, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:04:30] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:04:30] "[35m[1mGET /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 318, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:09:18] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:09:18] "[35m[1mGET /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 318, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:09:23] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:09:23] "[35m[1mGET /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 318, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:10:59] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:10:59] "[35m[1mGET /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 318, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:11:18] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:11:18] "[35m[1mGET /cart/0 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 318, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:16:27] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 09:16:30] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 09:16:31] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+59.14.197.136 - - [16/Mar/2022 09:18:55] "OPTIONS /category/large HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:18:55] "OPTIONS /mypage HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:18:55] "[35m[1mGET /mypage HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 158, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:18:55] "[35m[1mGET /category/large HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 646, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:18:58] "[35m[1mGET /mypage HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 158, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:18:58] "[35m[1mGET /category/large HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2091, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2076, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 271, in error_router
+    return original_handler(e)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_cors/extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 467, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/views.py", line 84, in view
+    return current_app.ensure_sync(self.dispatch_request)(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/home/ec2-user/b2c/flaskAPI/router.py", line 646, in get
+    user_id = access_cookie(session_id[11:])
+  File "/home/ec2-user/b2c/flaskAPI/function/func_user.py", line 7, in access_cookie
+    if session.expire():
+AttributeError: 'NoneType' object has no attribute 'expire'
+59.14.197.136 - - [16/Mar/2022 09:26:05] "OPTIONS /login HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:05] "POST /login HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:09] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:09] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:31] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:31] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:52] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:26:52] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:27:20] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:27:20] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:27:21] "OPTIONS /cart/3 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:27:21] "DELETE /cart/3 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:28:03] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:28:04] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:31:23] "OPTIONS /cart/4 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:31:23] "DELETE /cart/4 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:31:28] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:31:28] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:33:15] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:33:15] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:33:34] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:33:34] "GET /cart/0 HTTP/1.1" 200 -
+185.170.8.247 - - [16/Mar/2022 09:38:14] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+185.170.8.247 - - [16/Mar/2022 09:38:14] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+59.14.197.136 - - [16/Mar/2022 09:42:37] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:42:37] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:42:46] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:42:46] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:43:21] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:43:21] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:43:29] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:43:29] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:45:53] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:45:53] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:46:22] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:46:22] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:46:33] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:46:33] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:47:12] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:47:12] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:47:58] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:47:58] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:48:20] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:48:21] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:48:29] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:48:29] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:49:06] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:49:06] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:49:12] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:49:12] "GET /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:50:43] "OPTIONS /cart/0 HTTP/1.1" 200 -
+59.14.197.136 - - [16/Mar/2022 09:50:43] "GET /cart/0 HTTP/1.1" 200 -
+91.191.209.202 - - [16/Mar/2022 11:06:20] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+91.191.209.202 - - [16/Mar/2022 11:06:20] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+46.161.27.48 - - [16/Mar/2022 19:38:22] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+46.161.27.48 - - [16/Mar/2022 19:38:22] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+167.248.133.117 - - [16/Mar/2022 20:55:28] "[33mGET / HTTP/1.1[0m" 404 -
+167.248.133.117 - - [16/Mar/2022 20:55:38] code 505, message Invalid HTTP version (2.0)
+167.248.133.117 - - [16/Mar/2022 20:55:38] "[35m[1mPRI * HTTP/2.0[0m" HTTPStatus.HTTP_VERSION_NOT_SUPPORTED -
+185.173.35.37 - - [17/Mar/2022 03:10:53] "[33mGET / HTTP/1.1[0m" 404 -
+45.227.254.49 - - [17/Mar/2022 05:26:31] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+45.227.254.49 - - [17/Mar/2022 05:26:31] "[35m[1m  ,'à     Cookie: mstshash=Domain[0m" HTTPStatus.BAD_REQUEST -
+45.227.254.49 - - [17/Mar/2022 05:26:32] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+45.227.254.49 - - [17/Mar/2022 05:26:32] "[35m[1m  ,'à     Cookie: mstshash=Domain[0m" HTTPStatus.BAD_REQUEST -
+62.233.50.179 - - [17/Mar/2022 12:22:52] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+62.233.50.179 - - [17/Mar/2022 12:22:52] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+157.245.12.70 - - [17/Mar/2022 20:47:06] "[33mHEAD / HTTP/1.0[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:06] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:07] "[33mGET /c/version.js HTTP/1.1[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:07] "[33mGET /streaming/clients_live.php HTTP/1.1[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:07] "[33mGET /stalker_portal/c/version.js HTTP/1.1[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:08] "[33mGET /stream/live.php HTTP/1.1[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:08] "[33mGET /flu/403.html HTTP/1.1[0m" 404 -
+157.245.12.70 - - [17/Mar/2022 20:47:09] "[33mGET / HTTP/1.1[0m" 404 -
+194.165.16.76 - - [17/Mar/2022 21:48:27] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+194.165.16.76 - - [17/Mar/2022 21:48:27] "[35m[1m  ,'à     Cookie: mstshash=Domain[0m" HTTPStatus.BAD_REQUEST -
+194.165.16.76 - - [17/Mar/2022 21:48:27] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+194.165.16.76 - - [17/Mar/2022 21:48:27] "[35m[1m  ,'à     Cookie: mstshash=Domain[0m" HTTPStatus.BAD_REQUEST -
+222.186.19.235 - - [17/Mar/2022 23:09:32] "[33mGET http://fuwu.sogou.com/404/index.html HTTP/1.1[0m" 404 -
+222.186.19.235 - - [17/Mar/2022 23:09:33] code 400, message Bad request version ('À\x14À')
+222.186.19.235 - - [17/Mar/2022 23:09:33] "[35m[1m î  êµ¥ÝWÉÇ?¤ØtÏßMv¬êó >½îg-B WY©òù}ââÑcÕX°Ï½²´-í4Î@4 &Ì¨Ì©À/À0À+À,ÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+222.186.19.235 - - [17/Mar/2022 23:09:33] "[33mGET http://fuwu.sogou.com/404/index.html HTTP/1.1[0m" 404 -
+222.186.19.235 - - [17/Mar/2022 23:09:40] code 400, message Bad request syntax ('\x05\x01\x00')
+222.186.19.235 - - [17/Mar/2022 23:09:40] "[35m[1m [0m" HTTPStatus.BAD_REQUEST -
+167.94.138.47 - - [18/Mar/2022 02:21:37] code 400, message Bad request version ('À\x14À')
+167.94.138.47 - - [18/Mar/2022 02:21:37] "[35m[1m î  êJ+úÐk[ ^ô=­üEÀzÒ¥AÅøÜ^²ðò n¹¸¯¶à¯´ãÖ'¼5$puc\>Hõù2È &Ì¨Ì©À/À0À+À,ÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+167.94.138.47 - - [18/Mar/2022 02:21:38] "[33mGET / HTTP/1.1[0m" 404 -
+167.94.138.47 - - [18/Mar/2022 02:21:39] "[33mGET / HTTP/1.1[0m" 404 -
+167.94.138.47 - - [18/Mar/2022 02:21:39] code 505, message Invalid HTTP version (2.0)
+167.94.138.47 - - [18/Mar/2022 02:21:39] "[35m[1mPRI * HTTP/2.0[0m" HTTPStatus.HTTP_VERSION_NOT_SUPPORTED -
+23.129.64.132 - - [18/Mar/2022 05:42:07] "[33mGET / HTTP/1.1[0m" 404 -
+62.233.50.179 - - [18/Mar/2022 10:08:15] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+62.233.50.179 - - [18/Mar/2022 10:08:15] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+170.130.187.42 - - [18/Mar/2022 19:28:13] "[33mGET / HTTP/1.1[0m" 404 -
+167.248.133.47 - - [19/Mar/2022 02:01:16] code 400, message Bad request version ('À\x14À')
+167.248.133.47 - - [19/Mar/2022 02:01:16] "[35m[1m î  ê1¥6ÃT¨ºÄ9l{%V´GYaõºïX6¨ôèÐ ãEgÈñYÛ»Â¡úa£|	Ì©¶÷YË®ù¡?ªá &Ì¨Ì©À/À0À+À,ÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+167.248.133.47 - - [19/Mar/2022 02:01:17] "[33mGET / HTTP/1.1[0m" 404 -
+167.248.133.47 - - [19/Mar/2022 02:01:18] "[33mGET / HTTP/1.1[0m" 404 -
+167.248.133.47 - - [19/Mar/2022 02:01:18] code 505, message Invalid HTTP version (2.0)
+167.248.133.47 - - [19/Mar/2022 02:01:18] "[35m[1mPRI * HTTP/2.0[0m" HTTPStatus.HTTP_VERSION_NOT_SUPPORTED -
+89.248.165.92 - - [19/Mar/2022 05:59:31] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x02\x00\x00\x00')
+89.248.165.92 - - [19/Mar/2022 05:59:31] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -
+91.241.19.229 - - [19/Mar/2022 21:52:08] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+91.241.19.229 - - [19/Mar/2022 21:52:08] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+185.212.131.64 - - [19/Mar/2022 23:44:01] "[33mGET / HTTP/1.0[0m" 404 -
+104.206.128.70 - - [20/Mar/2022 00:22:47] "[33mGET / HTTP/1.0[0m" 404 -
+139.177.198.66 - - [20/Mar/2022 00:44:13] "[33mGET / HTTP/1.0[0m" 404 -
+89.248.165.102 - - [20/Mar/2022 02:01:44] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x02\x00\x00\x00')
+89.248.165.102 - - [20/Mar/2022 02:01:44] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -
+194.165.16.78 - - [20/Mar/2022 03:40:25] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+194.165.16.78 - - [20/Mar/2022 03:40:25] "[35m[1m  ,'à     Cookie: mstshash=Domain[0m" HTTPStatus.BAD_REQUEST -
+194.165.16.78 - - [20/Mar/2022 03:40:25] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+194.165.16.78 - - [20/Mar/2022 03:40:25] "[35m[1m  ,'à     Cookie: mstshash=Domain[0m" HTTPStatus.BAD_REQUEST -
+62.233.50.179 - - [20/Mar/2022 06:16:11] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+62.233.50.179 - - [20/Mar/2022 06:16:11] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+ * Serving Flask app 'config.config_flask' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+Traceback (most recent call last):
+  File "router.py", line 979, in <module>
+    app.run(host = '0.0.0.0', debug=True)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/flask/app.py", line 920, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "/home/ec2-user/b2c/flaskAPI/lib/python3.7/site-packages/werkzeug/serving.py", line 984, in run_simple
+    s.bind(server_address)
+OSError: [Errno 98] Address already in use
+218.235.241.100 - - [20/Mar/2022 08:00:49] "[33mGET / HTTP/1.1[0m" 404 -
+218.235.241.100 - - [20/Mar/2022 08:00:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+218.235.241.100 - - [20/Mar/2022 08:00:51] "GET /apidocs/ HTTP/1.1" 200 -
+218.235.241.100 - - [20/Mar/2022 08:00:51] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:00:51] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:00:51] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:00:51] "GET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1" 200 -
+218.235.241.100 - - [20/Mar/2022 08:00:52] "GET /apispec_1.json HTTP/1.1" 200 -
+62.171.190.75 - - [20/Mar/2022 08:03:09] code 505, message Invalid HTTP version (2.0)
+62.171.190.75 - - [20/Mar/2022 08:03:09] "[35m[1mPRI * HTTP/2.0[0m" HTTPStatus.HTTP_VERSION_NOT_SUPPORTED -
+218.235.241.100 - - [20/Mar/2022 08:27:58] "GET /apidocs/ HTTP/1.1" 200 -
+218.235.241.100 - - [20/Mar/2022 08:27:58] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:27:58] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:27:58] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:27:58] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+218.235.241.100 - - [20/Mar/2022 08:27:58] "GET /apispec_1.json HTTP/1.1" 200 -

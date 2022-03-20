@@ -1,8 +1,14 @@
 from datetime import timedelta
 from model import *
-from function.func_user import item_to_dict, all_item
 from random import randint, shuffle
-    
+item_to_dict = lambda r: {c.name: str(getattr(r, c.name)) for c in r.__table__.columns}
+
+def all_item(item, n):
+    result = []
+    for i in range(n):
+        result.append(item_to_dict(item[i]))
+    return result
+
 def product_preview(item, n, uid):
     result = []
     for i in range(n):

@@ -1,4 +1,5 @@
 from config.config_flask import timedelta
+from function.func_view import ProductFunc
 from model import *
 
 def access_cookie(session_id):
@@ -16,6 +17,11 @@ def all_item(item, n):
         result.append(item_to_dict(item[i]))
     return result
 
+def product_preview(item, n, uid):
+    res = item_to_dict(item[0])
+    res.update(item_to_dict(item[1]))
+    ProductFunc.discount(res,item[0].id, uid)
+    return res
 
 class UserFunction():
     def login(login_id, password):
@@ -36,7 +42,7 @@ class UserFunction():
         db.session.commit()
 
     def regist(login_id, password, name, phone, sex, birth, address):
-        if User.query.filter_by(login_id==login_id):
+        if User.query.filter_by(login_id=login_id).first():
             return 'id is already'
         user = User(rank_id = 1, login_id = login_id, password = password, name = name, phone = phone, sex = int(sex), birth = birth, consumption = 0, address = address, type = 0)
         db.session.add(user)
@@ -79,8 +85,8 @@ class UserFunction():
         like = Like.query.filter_by(user_id = user_id).all()
         result = []
         for item in like:
-            product = Product.query.filter_by(id = item.product_id)
-            result.append(item_to_dict(product))
+            product = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.id == item.product_id).first()
+            result.append(product_preview(product,1,user_id))
         return result
 
     def add_like(user_id,product_id):
@@ -99,8 +105,8 @@ class UserFunction():
         cart = Cart.query.filter_by(user_id = user_id).all()
         result = []
         for item in cart:
-            product = Product.query.filter_by(id = item.product_id)
-            result.append(item_to_dict(product))
+            product = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.id == item.product_id).first()
+            result.append(product_preview(product,1,user_id))
         return result
 
     def add_cart(user_id,product_id):
