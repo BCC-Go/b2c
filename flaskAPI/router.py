@@ -221,8 +221,8 @@ class ImageUpload(Resource):
         tags:
           - ImageUpload
         parameters:
-          - in: body
-            name: url
+          - in: form
+            name: file
             type: string
         responses:
             200:
@@ -230,7 +230,6 @@ class ImageUpload(Resource):
 
         """
         f = request.files['file']
-        #data = request.get_json()
         Image.upload(f)
 
         return "success"
@@ -391,11 +390,6 @@ class ItemRegist(Resource):
             requirement: true
             description: 가격
           - in: body
-            name: image
-            type: string
-            requirement: true
-            description: 이미지 url 주소
-          - in: body
             name: brand
             type: string
             requirement: true
@@ -410,10 +404,14 @@ class ItemRegist(Resource):
             type: string
             requirement: true
             description: 상품 상세 설명
+          - in: form
+            name: file
+            type: string
         responses:
             200:
                 description: 상품 좋아요 성공
         """
+        f = request.files['file']
         session_id = request.headers['Session']
         data = request.get_json()
         user_id = access_cookie(session_id[11:])
@@ -421,7 +419,7 @@ class ItemRegist(Resource):
             return 0 # no login
         user = User.query.filter_by(id = user_id).first()
         if user.type == 1:
-          return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], data['image'], data['brand'], data['summary'], data['detail'])
+          return ProductFunc.regist_product(user, data['category_name'], data['name'], data['price'], f, data['brand'], data['summary'], data['detail'])
         else:
           return "No auth",500
 
@@ -787,10 +785,10 @@ class ReviewRegist(Resource):
             name: star
             type: float
             description: 유저가 준 별점
-          - in: body
+          - in: file
             name: image
             type: file
-            description: 차후 수정
+            description: 리뷰 이미지
         responses:
             200:
                 description: 상품에 리뷰 등록 성공
@@ -801,7 +799,11 @@ class ReviewRegist(Resource):
             return 0 # no login
         data = request.get_json()
         user = User.query.filter_by(id = user_id).first()
-        return UserFunction.regist_review(user.id,data['product_id'],data['content'],'image',data['star'])
+        if 'file' not in request.files:
+            return UserFunction.regist_review(user.id,data['product_id'],data['content'],data['star'])
+        f = request.files['file']
+        print(f)
+        return UserFunction.regist_review_img(user.id,data['product_id'],data['content'],f,data['star'])
 
 class QuestionLoad(Resource):
     def get(self,pid):

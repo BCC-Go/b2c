@@ -121,16 +121,38 @@ class UserFunction():
 
 
     #리뷰 관련
-    def regist_review(uid,pid,content,image,star): # 등록
-        review = Review(user_id = uid, product_id = pid, content = content, image = image, star = star, write_time = koreaNow())
+    def regist_review_img(uid,pid,content,image,star): # 등록
         item = Product.query.filter_by(id = pid).first()
-        re = db.session.query(Review.star).filter(Product.product_id == pid).all()
+        
+        last = db.session.query(Review.id).order_by(Review.id.desc()).first()
+        if last is None:
+            num = 0
+        else:
+            num = last[0]
+        if upload_image(image,num,'review/'):
+            img = 'review/'+str(num+1)+splitext(file.filename)[1]
+        review = Review(user_id = uid, product_id = pid, content = content, image = img, star = star, write_time = koreaNow())
+        re = db.session.query(Review.star).filter(Review.product_id == pid).all()
         re = [re[i][0] for i in range(len(re))]
+        re.append(star)
         avg_star = sum(re)/len(re)
         item.avg_star = avg_star
         db.session.add(review)
         db.session.commit()
     
+    def regist_review(uid,pid,content,star): # 등록
+
+        review = Review(user_id = uid, product_id = pid, content = content, image = '', star = star, write_time = koreaNow())
+        db.session.add(review)
+        re = db.session.query(Review.star).filter(Review.product_id == pid).all()
+        re = [re[i][0] for i in range(len(re))]
+        re.append(star)
+        avg_star = sum(re)/len(re)
+
+        item = Product.query.filter_by(id = pid).first()
+        item.avg_star = avg_star
+        db.session.commit()
+
     def load_review(pid): # 보여주기
         review = Review.query.filter_by(product_id = pid).all()
         result = []

@@ -1,6 +1,7 @@
 from datetime import timedelta
 from model import *
 from random import randint, shuffle
+from function.func_img import Image
 item_to_dict = lambda r: {c.name: str(getattr(r, c.name)) for c in r.__table__.columns}
 
 def all_item(item, n):
@@ -32,6 +33,8 @@ class ProductFunc():
             return 0
         cate = CategorySmall.query.filter_by(name = category_name).first()
         new = Product(category_small_id = cate.id, name = name, price = price, image = image, brand = brand, avg_star = 0, regist_time = koreaNow())
+        pid = db.session.query(Product.id).order_by(Product.id.desc()).first()
+        Image.upload_image(image,pid[0],'product')
         db.session.add(new)
         db.session.commit()
         new_detail = ProductDetail(product_id = new.id, summary = summary, detail = detail)
