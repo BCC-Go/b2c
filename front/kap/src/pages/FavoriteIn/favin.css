@@ -99,44 +99,7 @@
         min-width: 106px;
         height: 30px;
     }
-    .ModButton{
-        width: 100%;
-        height: 5vh;
-        padding: 0;
-    }
-    .ModButton > button{
-        background-color: lightgray;
-        border: 1px solid #95989A;
-        color: black;
-        border-top:none;
-        border-left: none;
-        border-collapse: collapse;
-        height: 100%;
-        width: 33.333vw;
-
-    }
-    .ModButton > button:hover{
-        background-color: white;
-        border: 1px solid white;
-        color: black;
-        border-top:none;
-        border-left: none;
-        border-collapse: collapse;
-        height: 100%;
-        width: 33.333vw;
-
-    }
-    .ModButton > button :active{
-        background-color: white;
-        border: 1px solid white;
-        color: black;
-        border-top:none;
-        border-left: none;
-        border-collapse: collapse;
-        height: 100%;
-        width: 33.333vw;
-
-    }
+    
     .Bottom{
         display: flex;
         width: 100%;

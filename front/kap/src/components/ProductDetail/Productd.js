@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+import FootNav from '../../components/FootNav';
+import axios from "axios";
 
+axios.defaults.headers.common['Session'] = document.cookie;
 function Productd() {
+
+    const [mid, setmid] = useState([]);
+    var pid = window.location.href;
+    pid = pid.substring(48, pid.length);
+
+    useEffect(() => {
+        axios
+            .get(`http://3.38.153.192:5000/detail/${pid}`, {
+                'pid': mid.id,
+            })
+            .then((res) => {
+                setmid(res.data)
+                console.log(res.data)
+            })
+
+    }, [pid]);
     return (
-        <div style={{ height: "400px" }}>
-            상
-            품
-            상
-            세
-            정
-            보
-            품질보증기준:본 제품의 무상 A/S 기간은 12개월 입니다. 보증기간내에 정상적으로 사용한 상태에서 발생한 고장 또는 결함의 경우, 무상 A/S 진행해 드립니다. 예외적인 경우, 제품 보증서상의 유상 서비스 기준을 따릅니다.
+
+        <div >
+            {mid.summary}
         </div>
+
     );
 }
 
-export default Productd;
+export default Productd

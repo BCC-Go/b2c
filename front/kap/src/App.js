@@ -9,7 +9,9 @@ import Buy from './pages/Buy';
 import SignUp from './pages/Mypage/SignUp';
 import Login from './pages/Mypage/Login';
 import Category from './pages/Category/Category';
-import Cloth from './pages/Cloth/Cloth';
+import Category2 from './pages/Category/Category2';
+import Category3 from './pages/Category/Category3';
+import Detail from './pages/Category/Detail';
 import Mypage2 from './pages/Mypage/Mypage2';
 import Cart from './pages/Cart/Cart';
 import Search from './pages/Search/Search';
@@ -32,7 +34,9 @@ function App() {
         <Route path="/Mypage2/Login" element={<Login />}></Route>
         <Route path="/Mypage2/Coupon" element={<Coupon />}></Route>
         <Route path="/Category" element={<Category />}></Route>
-        <Route path="/Category/Cloth" element={<Cloth />}></Route>
+        <Route path="/Category/mid/:id" element={<Category2 />}></Route>
+        <Route path="/Category/mid/small/:id" element={<Category3 />}></Route>
+        <Route path="/Category/mid/small/detail/:id" element={<Detail />}></Route>
         <Route path="/Mypage2" element={<Mypage2 />}></Route>
         <Route path="/Cart" element={<Cart />}></Route>
         <Route path="/Search" element={<Search />}></Route>

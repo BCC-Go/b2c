@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { createRoutesFromChildren, Link, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import "./category.css";
 import FootNav from '../../components/FootNav';
-import food from "../../public/imgs/food.jpg"
-import cloth from "../../public/imgs/cloth.jpg"
-import household from "../../public/imgs/household.jpg"
-import electronic from "../../public/imgs/electronic.jpg"
 import axios from "axios";
 
-
-function Category() {
+axios.defaults.headers.common['Session'] = document.cookie;
+function Category(props) {
 
     const [my, setmy] = useState([]);
-
+    const [cat, setCat] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
             .get(`http://3.38.153.192:5000/mypage`)
             .then((res) => {
                 setmy(res.data)
+                console.log(res.data)
+            })
+            .catch((err) => console.log(err));
+        axios
+            .get(`http://3.38.153.192:5000/category/large`)
+            .then((res) => {
+                setCat(res.data)
+                console.log(res.data)
             })
             .catch((err) => console.log(err));
     }, []);
-
     return (
         <>
             <div className="iconid">
@@ -32,8 +36,8 @@ function Category() {
                     <AccountCircleIcon color="action" fontSize="large" />
 
                     <div className="username" style={{ fontWeight: 'bold', marginLeft: 20 }}>
-                        {my.name} 님
-                    <div className="usergrade" style={{ fontWeight: 'lighter', fontSize: 14 }}>
+                        {my.name} 님 {cat.name}
+                        <div className="usergrade" style={{ fontWeight: 'lighter', fontSize: 14 }}>
                             {my.rank} 등급
                     </div>
                     </div>
@@ -49,36 +53,19 @@ function Category() {
                     카테고리
                 </div>
                 <div className="bundle">
-
-                    <div className="bundleiconname" style={{ fontSize: 10, margin: 16 }}>
-                        의류
-                            <Link to='./Cloth'>
-                            <div className="bundleicon">
-                                <img src={cloth} style={{ width: '60px', height: '60px', borderRadius: 10 }} />
-                            </div>
-                        </Link>
-                    </div>
-
-                    <div className="bundleiconname" style={{ fontSize: 10, margin: 17 }}>
-                        가전
-                        <div className="bundleicon">
-                            <img src={electronic} style={{ width: '60px', height: '60px', borderRadius: 10 }} />
-                        </div>
-                    </div>
-                    <div className="bundleiconname" style={{ fontSize: 10, margin: 17 }}>
-                        생활용품
-                        <div className="bundleicon">
-                            <img src={household} style={{ width: '60px', height: '60px', borderRadius: 10 }} />
-                        </div>
-                    </div>
-                    <div className="bundleiconname" style={{ fontSize: 10, margin: 17 }}>
-                        식품
-                        <div className="bundleicon">
-                            <img src={food} style={{ width: '60px', height: '60px', borderRadius: 10 }} />
-                        </div>
-                    </div>
+                    {
+                        cat.map(function (a, i) {
+                            return (
+                                <div className="bundleiconname" style={{ fontSize: 10, margin: 16 }} key={i} onClick={() => { navigate('/Category/mid/' + cat[i].id) }}>
+                                    {cat[i].name}
+                                    <div className="bundleicon">
+                                        <img src={'https://b2c-imagebucket.s3.ap-northeast-2.amazonaws.com/category/' + (i + 1) + '.jpeg'} style={{ width: '60px', height: '60px', borderRadius: 10 }}></img>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
-
             </div>
             <div className="categorytitle">
                 Event!
