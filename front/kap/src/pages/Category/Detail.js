@@ -5,15 +5,16 @@ import FootNav from '../../components/FootNav'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { IoMdArrowBack } from "react-icons/io";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import "../Favorite/fav.css";
+import "../FavoriteIn/favin.css";
 import { FaStar } from "react-icons/fa";
 import axios from 'axios';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { Nav } from 'react-bootstrap';
 import Productd from "../../components/ProductDetail/Productd";
 import Review from "../../components/ProductDetail/Review";
-import Ask from "../../components/ProductDetail/Ask";
-
+// import Ask from "../../components/ProductDetail/Ask";
+import Rating from "@mui/material/Rating";
+axios.defaults.headers.common['Session'] = document.cookie;
 function Detail() {
 
     const navigate = useNavigate();
@@ -63,29 +64,34 @@ function Detail() {
                         </div>
                     </div>
                     <div className="Price1">
-                        {
-                            mid.rate ? (
-                                <>
-                                    <div className="Discount">
-                                        {mid.rate} %
+                        <div>
+                            {
+                                mid.rate ? (
+                                    <>
+                                        <div className="Discount">
+                                            {mid.rate} %
                                 <div className="DiscountPrice">
-                                            {mid.price}원
+                                                {mid.price}원
                                 </div>
-                                    </div>
-                                    <div className="FinalPrice1">
-                                        {mid.amount} 원
+                                        </div>
+                                        <div className="FinalPrice1">
+                                            {mid.amount} 원
                             </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="FinalPrice1">
-                                        {mid.price} 원
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="FinalPrice1">
+                                            {mid.price} 원
                             </div>
-                                </>
-                            )
-                        }
-
+                                    </>
+                                )
+                            }
+                        </div>
+                        <div>
+                            <Rating name="read-only" value={mid.avg_star ?? ""} precision={0.1} size='large' readOnly />
+                        </div>
                     </div>
+
                     <div className="TwoButton">
                         <button className="Cartbutton" type="button">장바구니 담기</button>
                         <button className="Buybutton" type="button">바로구매</button>
@@ -101,7 +107,7 @@ function Detail() {
                         <Nav.Link eventKey="link-1" onClick={() => setMode(<Review />)}>상품평</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-2" onClick={() => setMode(<Ask />)}>상품문의</Nav.Link>
+                        <Nav.Link eventKey="link-2" onClick={() => setMode(<Ask mid={mid} />)}>상품문의</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 <div>
@@ -186,5 +192,91 @@ function Heart(props) {
     );
 }
 
+function Ask(props) {
+
+
+    const [mid2, setmid2] = useState([]);
+    const [title, setTitle] = useState([]);
+    const [content, setContent] = useState([]);
+    const [hashtag, setHashtag] = useState([]);
+    const pid = props.mid.id;
+    // var pid = window.location.href;
+    // pid = pid.substring(48, pid.length);
+    // useEffect(() => {
+    //     axios
+    //         .get(`http://3.38.153.192:5000/detail/${pid}`, {
+    //             'pid': mid.id,
+    //         })
+    //         .then((res) => {
+    //             setmid(res.data)
+    //             console.log(res.data)
+    //         })
+
+    // }, [pid]);
+
+    useEffect(() => {
+        axios
+            .get(`http://3.38.153.192:5000/product/question/${pid}`)
+            .then((res) => {
+                setmid2(res.data)
+                console.log(res.data)
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    function Handler() {
+        axios
+            .post(`http://3.38.153.192:5000/product/question/regist`, {
+                'product_id': props.mid.id,
+                'title': title,
+                'content': content,
+                'hashtag': hashtag,
+            })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => console.log(err));
+
+    };
+    return (
+        <>
+            <div>
+
+                <div>
+                    {
+                        mid2 != null ? (
+                            <div>
+                                {mid2.question_title}
+
+                            </div>
+                        ) : (
+                            <div>
+                                문의없음
+                            </div>
+                        )
+                    }
+
+                </div>
+
+            </div>
+            <div >
+                제목
+                <input value={title} onChange={(e) => setTitle(e.target.value)}></input>
+            </div>
+            <div >
+                문의내용
+                <input value={content} onChange={(e) => setContent(e.target.value)}></input>
+            </div>
+            <div >
+                해쉬태그입력
+                <input value={hashtag} onChange={(e) => setHashtag(e.target.value)}></input>
+            </div>
+            <div>
+
+            </div>
+            <button type='button' onClick={Handler}>입력</button>
+        </>
+    );
+}
 export default Detail;
 

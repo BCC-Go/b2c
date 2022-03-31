@@ -4,7 +4,6 @@ import Mainpage from './pages/Mainpage';
 import New from './pages/New';
 import Best from './pages/Best';
 import Favorite from './pages/Favorite';
-import FavoriteIn from './pages/FavoriteIn';
 import Buy from './pages/Buy';
 import SignUp from './pages/Mypage/SignUp';
 import Login from './pages/Mypage/Login';
@@ -27,7 +26,6 @@ function App() {
         <Route path="/New" element={<New />}></Route>
         <Route path="/Best" element={<Best />}></Route>
         <Route path="/Favorite" element={<Favorite />}></Route>
-        <Route path="/Favorite/FavoriteIn" element={<FavoriteIn />}></Route>
         <Route path="/Favorite/FavoriteIn/Buy" element={<Buy />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Login" element={<Login />}></Route>

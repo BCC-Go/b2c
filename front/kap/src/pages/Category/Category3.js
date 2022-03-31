@@ -2,15 +2,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import FootNav from '../../components/FootNav'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { IoMdArrowBack } from "react-icons/io";
 import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import axios from 'axios'
 // import LikeButton from '../../components/Button/LikeButton';
 // import style from '../../styles/fav.css';
 import "../Favorite/fav.css";
 import { connect } from 'react-redux';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import Rating from "@mui/material/Rating";
 axios.defaults.headers.common['Session'] = document.cookie;
 function Category3() {
 
@@ -18,6 +19,7 @@ function Category3() {
     cid = cid.substring(41, cid.length);
     const navigate = useNavigate();
     const [mid, setmid] = useState([]);
+    // const [mid2, setmid2] = useState([]);
 
     useEffect(() => {
         axios
@@ -26,7 +28,13 @@ function Category3() {
                 setmid(res.data)
                 console.log(res.data)
             })
-    }, [cid]);
+        // axios
+        //     .get(`http://3.38.153.192:5000/cart/0`)
+        //     .then((res) => {
+        //         setmid2(res.data)
+        //         console.log(res.data)
+        //     })
+    }, []);
 
 
     return (
@@ -63,9 +71,11 @@ function Memory(props) {
     cid = cid.substring(41, cid.length);
     const navigate = useNavigate();
     const [mid, setmid] = useState([]);
+    // const [mid2, setmid2] = useState([]);
     const [like, setLike] = useState(false);
     const pid = props.mid.product_id;
-
+    const [cart, setCart] = useState(false);
+    const [value, setValue] = useState([]);
     useEffect(() => {
         axios
             .get(`http://3.38.153.192:5000/category/item/${cid}`)
@@ -73,7 +83,15 @@ function Memory(props) {
                 setmid(res.data)
                 console.log(res.data)
             })
-    }, [cid]);
+        // axios
+        //     .get(`http://3.38.153.192:5000/cart/0`)
+        //     .then((res) => {
+        //         setmid2(res.data)
+        //         console.log(res.data)
+        //     })
+
+    }, []);
+
     const toggleLike = async (e) => {
         setLike(false);
         const res = await axios
@@ -92,6 +110,30 @@ function Memory(props) {
         await axios
 
             .delete(`http://3.38.153.192:5000/like/${pid}`)
+            .then((res) => {
+
+                console.log(res.data)
+            })
+            .catch((err) => console.log(err));
+    };
+    const cartLike = async (e) => {
+        setCart(false);
+        const res = await axios
+            .post(`http://3.38.153.192:5000/cart/0`, {
+                'pid': props.mid.product_id,
+            })
+            .then((res) => {
+                alert('카트에 추가됐습니다')
+                console.log(res.data)
+            })
+            .catch((err) => console.log(err));
+    };
+
+    const cartDelete = async (e) => {
+        setCart(true);
+        await axios
+
+            .delete(`http://3.38.153.192:5000/cart/${pid}`)
             .then((res) => {
 
                 console.log(res.data)
@@ -146,13 +188,19 @@ function Memory(props) {
                                     (<HeartOutlined style={{ fontSize: '20px', marginTop: '5px' }} onClick={toggleLike} />)
 
                             }
+                            <div>
 
-                            <button className="click" type="button" onClick={() => {
-                                // props.dispatch({ type: '항목추가', 데이터: { id: mid.id, name: mid.name, quan: 1 } });
-                                // // navigate('./')
-                            }}>
-                                <ShoppingCartCheckoutOutlinedIcon sx={{ fontSize: 20 }} />
-                            </button>
+                                <div>
+                                    {
+                                        like == false && props.mid.like == 1 ? (<ShoppingCartCheckoutOutlinedIcon sx={{ fontSize: 20 }} onClick={cartLike} />)
+                                            :
+                                            (<ShoppingCartIcon sx={{ fontSize: 20 }} onClick={cartDelete} />)
+
+                                    }
+                                </div>
+                                <Rating name="read-only" value={props.mid.avg_star ?? ""} readOnly precision={0.1} />
+                            </div>
+
                         </div>
                     </div>
                 </div >
