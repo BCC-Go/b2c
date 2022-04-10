@@ -11,8 +11,7 @@ import axios from 'axios';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { Nav } from 'react-bootstrap';
 import Productd from "../../components/ProductDetail/Productd";
-import Review from "../../components/ProductDetail/Review";
-// import Ask from "../../components/ProductDetail/Ask";
+// import Review from "../../components/ProductDetail/Review";
 import Rating from "@mui/material/Rating";
 axios.defaults.headers.common['Session'] = document.cookie;
 function Detail() {
@@ -104,7 +103,7 @@ function Detail() {
                         <Nav.Link eventKey="link-0" onClick={() => setMode(<Productd />)}>상품상세</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-1" onClick={() => setMode(<Review />)}>상품평</Nav.Link>
+                        <Nav.Link eventKey="link-1" onClick={() => setMode(<Review mid={mid} />)}>상품평</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link eventKey="link-2" onClick={() => setMode(<Ask mid={mid} />)}>상품문의</Nav.Link>
@@ -117,7 +116,7 @@ function Detail() {
 
                 </div>
             </div>
-            <div className="Bottom" style={{ backgroundColor: "white" }}>
+            <div className="Bottom" style={{ backgroundColor: "white", marginTop: '10px' }}>
                 <button className="Review"><FaStar className="pic" size="13" /> 리뷰(899)</button>
                 <div className="BottomPrice">
                     <div className="Discount">
@@ -194,32 +193,18 @@ function Heart(props) {
 
 function Ask(props) {
 
-
     const [mid2, setmid2] = useState([]);
     const [title, setTitle] = useState([]);
     const [content, setContent] = useState([]);
     const [hashtag, setHashtag] = useState([]);
     const pid = props.mid.id;
-    // var pid = window.location.href;
-    // pid = pid.substring(48, pid.length);
-    // useEffect(() => {
-    //     axios
-    //         .get(`http://3.38.153.192:5000/detail/${pid}`, {
-    //             'pid': mid.id,
-    //         })
-    //         .then((res) => {
-    //             setmid(res.data)
-    //             console.log(res.data)
-    //         })
-
-    // }, [pid]);
 
     useEffect(() => {
         axios
             .get(`http://3.38.153.192:5000/product/question/${pid}`)
             .then((res) => {
                 setmid2(res.data)
-                console.log(res.data)
+                console.log(res)
             })
             .catch((err) => console.log(err));
     }, []);
@@ -240,41 +225,178 @@ function Ask(props) {
     };
     return (
         <>
-            <div>
-
-                <div>
-                    {
-                        mid2 != null ? (
-                            <div>
-                                {mid2.question_title}
-
-                            </div>
-                        ) : (
-                            <div>
-                                문의없음
-                            </div>
-                        )
-                    }
-
-                </div>
-
-            </div>
-            <div >
+            <div style={{ borderTop: '2px solid gray', paddingTop: '10px' }}>
                 제목
                 <input value={title} onChange={(e) => setTitle(e.target.value)}></input>
             </div>
             <div >
                 문의내용
-                <input value={content} onChange={(e) => setContent(e.target.value)}></input>
+                <textarea
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    type="text"
+                    placeholder="내용을 입력하세요"
+                    style={{ resize: 'none' }}
+                />
             </div>
             <div >
                 해쉬태그입력
                 <input value={hashtag} onChange={(e) => setHashtag(e.target.value)}></input>
             </div>
+            <div style={{ marginBottom: '70px' }}>
+                <button type='button' onClick={Handler}>입력</button>
+            </div>
             <div>
 
+                <div style={{ marginBottom: "40px" }}>
+                    {
+                        mid2 != null ? (
+
+
+                            mid2.map(function (a, i) {
+                                return (
+                                    <div style={{ borderTop: '1px solid gray', borderCollapse: 'collapse' }}>
+                                        <div style={{ display: 'flex', width: '95vw', minHeight: '80px', justifyContent: 'space-between' }}>
+                                            <div style={{ width: '70vw', display: 'flex', flexDirection: 'column', justifyContent: 'left' }}>
+                                                <div style={{ display: 'flex', padding: '1%' }}>
+                                                    Q {mid2[i].question_title}
+                                                </div>
+                                                <div style={{ display: 'flex', padding: '2%' }}>
+                                                    {mid2[i].question_content}
+                                                </div>
+                                                <div style={{ display: 'flex', padding: '2%', color: '#00ffff' }}>
+                                                    {mid2[i].question_hashtag}
+                                                </div>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <div>
+                                                    {mid2[i].question_write_time.substring(10, 0)}
+                                                </div>
+                                                <div>
+                                                    {mid2[i].name}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                )
+                            })
+
+
+                        ) : (
+                            <div>
+                                문의사항없음
+                            </div>
+                        )
+                    }
+                </div>
             </div>
-            <button type='button' onClick={Handler}>입력</button>
+        </>
+    );
+}
+function Review(props) {
+
+    const [mid2, setmid2] = useState([]);
+    const [value, setValue] = useState([]);
+    const [content, setContent] = useState([]);
+    const [image, setImage] = useState([]);
+    const pid = props.mid.id;
+
+    useEffect(() => {
+        axios
+            .get(`http://3.38.153.192:5000/product/review/${pid}`)
+            .then((res) => {
+                setmid2(res.data)
+                console.log(res)
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    function Handler() {
+        axios
+            .post(`http://3.38.153.192:5000/product/review/regist`, {
+                'product_id': props.mid.id,
+                'star': value,
+                'content': content,
+                'image': image,
+            })
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => console.log(err));
+
+    };
+    return (
+        <>
+            <div style={{ borderTop: '2px solid gray', paddingTop: '10px' }}>
+                별점
+                <Rating
+                    value={value}
+                    size="large"
+                    onChange={(event, newValue) => {
+                        setValue(newValue);
+                    }}
+                />
+            </div>
+            <div >
+                문의내용
+                <textarea
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    type="text"
+                    placeholder="내용을 입력하세요"
+                    style={{ resize: 'none' }}
+                />
+            </div>
+            <div style={{ marginBottom: '70px' }}>
+                <button type='button' onClick={Handler}>입력</button>
+            </div>
+            <div>
+
+                <div style={{ marginBottom: "40px" }}>
+                    {
+                        mid2 != null ? (
+
+
+                            mid2.map(function (a, i) {
+                                return (
+                                    <div style={{ borderTop: '1px solid gray', borderCollapse: 'collapse' }}>
+                                        <div style={{ display: 'flex', width: '95vw', minHeight: '80px', justifyContent: 'space-between' }}>
+                                            <div style={{ width: '70vw', display: 'flex', flexDirection: 'column', justifyContent: 'left' }}>
+                                                <div style={{ display: 'flex', padding: '1%' }}>
+                                                    Q {mid2[i].image}
+                                                </div>
+                                                <div style={{ display: 'flex', padding: '2%' }}>
+                                                    {mid2[i].content}
+                                                </div>
+                                                <div style={{ display: 'flex', padding: '2%', color: '#00ffff' }}>
+
+                                                    <Rating name="read-only" value={mid2[i].star} readOnly />
+                                                </div>
+                                            </div>
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <div>
+                                                    {mid2[i].write_time.substring(10, 0)}
+                                                </div>
+                                                <div>
+                                                    {mid2[i].name}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                )
+                            })
+
+
+                        ) : (
+                            <div>
+                                문의사항없음
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
         </>
     );
 }
