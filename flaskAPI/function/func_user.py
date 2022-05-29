@@ -1,5 +1,6 @@
 from config.config_flask import timedelta
 from function.func_view import ProductFunc
+from random import randint
 from model import *
 
 def access_cookie(session_id):
@@ -45,7 +46,12 @@ class UserFunction():
         if User.query.filter_by(login_id=login_id).first():
             return 'id is already'
         user = User(rank_id = b'\x31', login_id = login_id, password = password, name = name, phone = phone, sex = int(sex), birth = birth, consumption = 0, address = address, type = b'\x00')
+        reco_taste = UserTaste(user_id = user.id, category_mid_id = randint(1,18))
+        reco_recommand = UserRecommand(user_id = user.id, category_mid_id = randint(1,18))
+        db.session.add(reco_taste)
+        db.session.add(reco_recommand)
         db.session.add(user)
+        
         db.session.commit()
         return 1
 
@@ -190,3 +196,9 @@ class UserFunction():
         db.session.add(answer)
         db.session.commit()
         return 1
+
+
+    def buy(user_id, product_id, count):
+        buy = Buylist(user_id = user_id, product_id = product_id, count = count, buy_date = koreaNow())
+        db.session.add(buy)
+        db.session.commit()

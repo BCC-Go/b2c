@@ -218,7 +218,7 @@ class Buylist(db.Model): # 구매목록
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
-    count = db.Column(db.BINARY(5), nullable=False)
+    count = db.Column(db.Integer, nullable=False)
     buy_date = db.Column(db.DateTime, nullable=False)
 
 

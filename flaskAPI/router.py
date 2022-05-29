@@ -941,6 +941,34 @@ class ImageUp(Resource):
         resp.content_type = 'text/plain'
         return resp
 
+class Buy(Resource):
+    def post(self):
+      """
+      상품 구매
+      ---
+      tags:
+        - Buyitem
+      parameters:
+        - in: body
+          name: product_id
+          type: int
+          description: 상품 고유 번호
+        - in: body
+          name: count
+          type: int
+          description: 상품 개수
+      responses:
+          200:
+              description: 상품 구매 성공
+      """
+      session_id = request.headers['Session']
+      user_id = access_cookie(session_id[11:])
+      if 0 == user_id:
+          return 0 # no login
+      data = request.get_json()
+      user = User.query.filter_by(id = user_id).first()
+      return UserFunction.buy(user.id,data['product_id'],data['count'])
+
 
 api.add_resource(ImageUp, '/uplo')
 
@@ -959,6 +987,7 @@ api.add_resource(ItemRegist, '/producer/item/regist')
 api.add_resource(ProductRecommand, '/main/recommand')
 api.add_resource(ProductTaste, '/main/taste')
 api.add_resource(NewProduct, '/product/new')
+api.add_resource(Buy, '/product/buy')
 
 api.add_resource(Search, '/search/<string:keyword>')
 api.add_resource(SearchCurrent, '/search/current')
