@@ -54,7 +54,7 @@ class Logout(Resource):
             200:
                 description: cookie is expired
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -154,7 +154,7 @@ class Mypage(Resource):
                             type: int
                             description: 보유중인 쿠폰 수
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -181,7 +181,7 @@ class CouponList(Resource):
                         expire:
                             type: string
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -206,7 +206,7 @@ class PointList(Resource):
                         content:
                             type: string
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -248,7 +248,7 @@ class Like(Resource):
                 schema:
                     id: product view  
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -270,7 +270,7 @@ class Like(Resource):
             200:
                 description: 상품 좋아요 성공
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         data = request.get_json()
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
@@ -293,7 +293,7 @@ class Like(Resource):
             200:
                 description: 상품 좋아요 취소 성공
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -313,7 +313,7 @@ class Cart(Resource):
                 schema:
                     id: product view  
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -335,7 +335,7 @@ class Cart(Resource):
             200:
                 description: 상품 좋아요 성공
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         data = request.get_json()
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
@@ -358,7 +358,7 @@ class Cart(Resource):
             200:
                 description: 상품 좋아요 취소 성공
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -412,7 +412,7 @@ class ItemRegist(Resource):
                 description: 상품 좋아요 성공
         """
         f = request.files['file']
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         data = request.get_json()
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
@@ -474,7 +474,7 @@ class ProductRecommand(Resource):
                             description: 좋아요한 상품 1, 아닌 상품 0
         """
 
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -586,7 +586,7 @@ class SearchPopular(Resource):
                 schema:
                     id: keyword
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -611,7 +611,7 @@ class ItemDetail(Resource):
                 schema:
                     id: product view
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -640,7 +640,7 @@ class BigCateView(Resource):
                             type: string
                             description: 카테고리 이미지 url
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -670,7 +670,7 @@ class MidCateView(Resource):
                             type: string
                             description: 카테고리 이름
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -694,7 +694,7 @@ class ShowCateItem(Resource):
                 schema:
                     id: product view
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -722,7 +722,7 @@ class BuyItem(Resource):
             type: int
             description: 구매 할 수
         """
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -793,7 +793,7 @@ class ReviewRegist(Resource):
             200:
                 description: 상품에 리뷰 등록 성공
         """    
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -878,7 +878,7 @@ class QuestionRegist(Resource):
             200:
                 description: 상품에 질문 등록 성공
         """    
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
@@ -918,7 +918,7 @@ class AnswerRegist(Resource):
             200:
                 description: 상품에 질문 등록 성공
         """    
-        session_id = request.headers['Session']
+        session_id = request.headers['session_id']
         user_id = access_cookie(session_id[11:])
         if 0 == user_id:
             return 0 # no login
