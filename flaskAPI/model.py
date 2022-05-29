@@ -249,3 +249,9 @@ class CategoryLarge(db.Model):
     image = db.Column(db.String(45), nullable=False)
 
     category = db.relationship('CategoryMid', backref='category_large', lazy=True)
+
+class Taste(db.Model):
+    __tablename__="taste"
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    
