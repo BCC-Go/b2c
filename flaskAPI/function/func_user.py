@@ -44,7 +44,7 @@ class UserFunction():
     def regist(login_id, password, name, phone, sex, birth, address):
         if User.query.filter_by(login_id=login_id).first():
             return 'id is already'
-        user = User(rank_id = 1, login_id = login_id, password = password, name = name, phone = phone, sex = int(sex), birth = birth, consumption = 0, address = address, type = 0)
+        user = User(rank_id = b'\x31', login_id = login_id, password = password, name = name, phone = phone, sex = int(sex), birth = birth, consumption = 0, address = address, type = b'\x00')
         db.session.add(user)
         db.session.commit()
         return 1

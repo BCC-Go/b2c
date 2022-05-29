@@ -1,8 +1,10 @@
 from ast import keyword
 from config.config_flask import app, koreaNow
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Session(db.Model):
     __tablename__="session"
