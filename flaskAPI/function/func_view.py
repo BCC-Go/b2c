@@ -65,16 +65,18 @@ class ProductFunc():
             reco = ProductFunc.find_small_category(recom.category_mid_id)
         else:
             reco = ProductFunc.find_small_category(type)
-        #items1 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[0]).all()
-        #items2 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[1]).all()
-        items1 = Product.query.filter_by(category_small_id = reco[0]).all()
-        items2 = Product.query.filter_by(category_small_id = reco[1]).all()
+        items1 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[0]).all()
+        items2 = db.session.query(Product,ProductDetail).filter(Product.id == ProductDetail.product_id, Product.category_small_id == reco[1]).all()
+        #items1 = Product.query.filter_by(category_small_id = reco[0]).all()
+        #items2 = Product.query.filter_by(category_small_id = reco[1]).all()
         item = items1+items2
         shuffle(item)
         if num == 0 or num > len(item):
             num = len(item)
-        return all_item(item,num)
-        #return product_preview(item,num, id)
+            if num > 100:
+                num = 100
+        #return all_item(item,num)
+        return product_preview(item,num, id)
 
     def discount(res, pid, uid):
         discount = Discount.query.filter_by(product_id = pid).first()
