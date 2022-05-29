@@ -1,1 +1,0 @@
-{"schema":{"fields":[{"name":"index","type":"string"},{"name":"qna_id","type":"string"},{"name":"employee_id","type":"string"},{"name":"product_id","type":"string"},{"name":"qna_content","type":"string"},{"name":"qna_title","type":"string"},{"name":"qna_date","type":"string"},{"name":"qna_category","type":"string"}],"primaryKey":["index"],"pandas_version":"0.20.0"},"data":[]}
