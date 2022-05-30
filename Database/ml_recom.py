@@ -84,5 +84,3 @@ def ml_recom(user_id, n):
     recommendation = product_id.transform(recommender)
     answer = recommendation.join(indexed.drop('user_id'), on = ["name_new"],how='left').sort("product_id")
     return answer.select('user_id','product_id').show()
-
-ml_recom(2,3)
